@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://isom1ddinov.uz/sitemap.xml
