@@ -1,0 +1,171 @@
+@import "https://fonts.googleapis.com/css2?family=Megrim&display=swap";
+
+
+
+#word {
+    font-family: Megrim, cursive;
+    font-size: 20vh;
+    position: absolute;
+    margin: 10;
+    /*bottom: 0;*/
+    color: #fc0;
+    -webkit-text-stroke: 0.15vh #c0f;
+}
+
+.cols {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+:root {
+    --marquee-speed: 40s;
+    --marquee-hover-offset: -50px;
+    --marquee-hover-transition-speed: .7s;
+    --marquee-fade-edges: 30%;
+}
+
+
+
+.marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0%) 0%, #000 var(--marquee-fade-edges), #000 calc(100% - var(--marquee-fade-edges)), rgba(0, 0, 0, 0%) 100%);
+
+    &,
+    >div {
+        display: flex;
+        white-space: nowrap;
+        gap: 30px;
+    }
+
+    >div {
+        animation: animate-marquee var(--marquee-speed) infinite linear;
+        transition: var(--marquee-hover-transition-speed) margin-left ease-out;
+        will-change: transform, margin-left;
+    }
+
+    &:hover>div {
+        animation-play-state: paused;
+        margin-left: var(--marquee-hover-offset);
+    }
+}
+
+@keyframes animate-marquee {
+    0% {
+        transform: translateX(0%) translateZ(0);
+    }
+
+    100% {
+        transform: translateX(-90%) translateZ(0);
+    }
+}
+
+.code-window{
+    width: auto;
+    height: auto;
+    background:#1e1e1e;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #2a2d2e;
+    box-shadow:0 0 40px rgba(0,0,0,.5);
+    font-family:"Consolas","Fira Code",monospace;
+}
+
+.logo {
+    border-radius: 50px;
+    background: #000;
+    width: 100px;
+    height: 100px;
+}
+
+.logo h1 {
+    color: #27c93f;
+    font-size: 36px;
+}
+
+.code-header{
+    height:42px;
+    background:#2d2d30;
+    display:flex;
+    align-items:center;
+    padding:0 16px;
+}
+
+.circle{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    margin-right:8px;
+}
+
+.red{background:#ff5f56;}
+.yellow{background:#ffbd2e;}
+.green{background:#27c93f;}
+
+.file{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:15px;
+    color:#cccccc;
+    font-size:14px;
+}
+
+.file img{
+    width:18px;
+}
+
+pre{
+    margin:0;
+    padding:25px;
+    font-size:12px;
+    line-height:1.9;
+    overflow:auto;
+}
+
+/* VS Code Colors */
+
+.keyword{
+    color:#569CD6;
+}
+
+.variable{
+    color:#9CDCFE;
+}
+
+.property{
+    color:#9CDCFE;
+}
+
+.operator{
+    color:#D4D4D4;
+}
+
+.string{
+    color:#CE9178;
+}
+
+.number{
+    color:#B5CEA8;
+}
+
+.boolean{
+    color:#569CD6;
+}
+
+.function{
+    color:#4EC9B0;
+}
+
+.method{
+    color:#DCDCAA;
+}
+
+.brace{
+    color:#FFD700;
+}
+
+.comma,
+.semicolon{
+    color:#D4D4D4;
+}
