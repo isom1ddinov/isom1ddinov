@@ -136,6 +136,7 @@
         }
 
         .wrap-narrow {
+            max-width: 760px;
             max-width: 1040px;
         }
 
@@ -208,6 +209,7 @@
             .about p {
                 margin-bottom: 45px;
             }
+
         }
 
         @media (max-width:900px),
@@ -362,6 +364,7 @@
             transition: .25s;
         }
 
+
         .nav-burger {
             display: none;
             flex-direction: column;
@@ -398,6 +401,7 @@
             nav .wrap {
                 padding: 0 18px;
             }
+            
 
             .form-submit {
                 width: 100%;
@@ -457,9 +461,11 @@
 ========================================= */
 
         @media (max-width:760px) {
+
             .nav-links {
                 z-index: 150;
             }
+
         }
 
         /* =========================================================
@@ -851,6 +857,8 @@
             height: 100%;
         }
 
+
+
         .about-photo::before {
             content: '';
             position: absolute;
@@ -889,23 +897,20 @@
                 aspect-ratio: 16/9;
                 order: -1;
             }
-
             #reviews-section {
-                display: block;
+                display:  block;
             }
-
             .auth-card {
-                margin-right: 0 !important;
-                width: 100% !important;
-                margin-bottom: 10px !important;
-                height: 315px !important;
+            margin-right: 0 !important;
+            width: 100% !important;
+            margin-bottom: 10px !important;
+            height: 315px !important;
             }
-
             .user-card,
             .comment-form-card {
                 margin-right: 0 !important;
-                width: 100% !important;
-                margin-bottom: 10px !important;
+            width: 100% !important;
+            margin-bottom: 10px !important;
             }
         }
 
@@ -1028,7 +1033,7 @@
         }
 
         /* =========================================================
-   PROCESS
+   PROCESS (real ordered sequence -> numbering justified)
 ========================================================= */
         .process-list {
             counter-reset: step;
@@ -1440,6 +1445,14 @@
             font-size: 14px;
         }
 
+        .blog-read {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 16px;
+            display: inline-block;
+        }
+
         /* =========================================================
    FAQ ACCORDION
 ========================================================= */
@@ -1537,6 +1550,12 @@
             color: var(--accent);
         }
 
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
         .form-field {
             display: flex;
             flex-direction: column;
@@ -1599,7 +1618,7 @@
    FOOTER
 ========================================================= */
         footer {
-            padding: 5px;
+            padding: 5;
         }
 
         footer .marquee {
@@ -1676,17 +1695,15 @@
             .footer-main {
                 grid-template-columns: 1fr 1fr;
             }
-
             .user-card {
-                width: 100% !important;
-                margin-bottom: 15px;
-                margin-left: 0px !important;
+            width: 100% !important;
+            margin-bottom: 15px;
+            margin-left: 0px !important;
             }
-
             .div {
+                
                 margin-right: 0;
             }
-
             .comment-form-card {
                 width: 100% !important;
                 margin-bottom: 15px !important;
@@ -1889,18 +1906,909 @@
                 transform: none;
             }
         }
+    </style>
+</head>
 
-        /* =========================================================
-   IZOHLAR (REVIEWS/COMMENTS) BO'LIMI STILI
-========================================================= */
+<body>
+    <div id="toast" class="toast"></div>
+
+    <div id="scroll-progress"></div>
+
+    <div id="loader">
+        <div class="loader-logo">isom1ddinov<span class="dot">.</span>uz</div>
+        <div class="bar-track">
+            <div class="bar-fill" id="loaderBar"></div>
+        </div>
+        <span class="pct" id="loadpct">0%</span>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <canvas id="cursor-trail-canvas"></canvas>
+
+    <nav>
+        <div class="wrap">
+
+            <!-- LOGO -->
+            <div class="nav-logo">
+                isom1ddinov<span style="color:var(--accent)">.</span>uz
+            </div>
+
+            <!-- DESKTOP MENU -->
+            <div class="nav-links" id="navLinks">
+                <a href="#about" data-nav>about</a>
+                <a href="#services" data-nav>services</a>
+                <a href="#skills" data-nav>skills</a>
+                <a href="#process" data-nav>process</a>
+                <a href="#projects" data-nav>projects</a>
+                <a href="#comments" data-nav>comments</a>
+                <a href="#faq" data-nav>faq</a>
+                <a href="#contact" data-nav>contact</a>
+
+            </div>
+
+            <!-- LANGUAGE -->
+            <div class="language-dropdown">
+
+                <button class="language-btn" id="languageBtn" type="button" aria-label="Tilni tanlash">
+                    <i class="fa-solid fa-globe"></i>
+
+                    <span id="currentLanguage">UZ</span>
+
+                    <i class="fa-solid fa-chevron-down arrow"></i>
+                </button>
+
+                <div class="language-menu" id="languageMenu">
+                    <button class="language-item active" data-lang="uz" type="button">
+                        UZ
+                    </button>
+
+                    <button class="language-item" data-lang="ru" type="button">
+                        RU
+                    </button>
+
+                    <button class="language-item" data-lang="en" type="button">
+                        EN
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- RIGHT CONTROLS -->
+            <div style="display:flex; align-items:center; gap:14px;">
+                <button class="theme-toggle" id="themeToggle" title="Mavzuni almashtirish">◐</button>
+                <div class="nav-burger" id="navBurger"><span></span><span></span><span></span></div>
+            </div>
+
+        </div>
+
+        </div>
+
+    </nav>
+
+    <section class="hero">
+        <canvas id="particles"></canvas>
+        <div class="wrap">
+            <div class="hero-inner">
+                <div class="eyebrow-row">
+                    <div class="status-dot"></div>
+                    <div class="prompt-line" data-i18n="hero.status">
+                        yangi loyihalarga ochiqman
+                    </div>
+                </div>
+                <h1 id="typed-name"></h1>
+                <div class="role-cycle mono">&gt; <span id="roleCycle" class="rc-accent"></span><span
+                        class="cursor-blink">&nbsp;</span></div>
+                <p class="desc" data-i18n="hero.description">Frontend dasturchi — 3 yillik tajriba. HTML, CSS,
+                    JavaScript va Python bilan g'oyalarni
+                    ishlaydigan, tez va sinchkovlik bilan qurilgan interfeyslarga aylantiraman.</p>
+                <div class="hero-tags">
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
+                        class="tag">Python</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.projects">
+                        Loyihalarni ko'rish
+                    </a>
+                    <a href="#contact" class="btn btn-ghost" data-i18n="hero.contact">
+                        Bog'lanish
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <div class="line"></div>SCROLL
+        </div>
+        <div class="hero-coords mono">41.2995° N<br>69.2401° E</div>
+    </section>
+
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="about.label">
+                01 — about
+            </div>
+
+            <div class="sec-title reveal" data-i18n="about.title">
+                Kim bu isom1ddinov?
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about reveal">
+
+                    <p data-i18n="about.text1">
+                        <strong>isom1ddinov</strong> — frontend yo'nalishida ishlaydigan dasturchi.
+                        So'nggi 3 yil davomida veb-interfeyslar qurish, statik saytlardan tortib
+                        interaktiv veb-ilovalargacha bo'lgan loyihalar ustida ishlaganman.
+                    </p>
+
+                    <p data-i18n="about.text2">
+                        Kodni aniq, o'qilishi oson va uzoq muddat qo'llab-quvvatlanadigan qilib yozishga
+                        harakat qilaman. Frontendda vizual detallarga, Python orqali esa avtomatlashtirish
+                        va muammolarni yechishga qiziqaman.
+                    </p>
+
+                    <p data-i18n="about.text3">
+                        Har bir loyihada bitta savolni beraman:
+                        <strong>bu interfeys odamning vaqtini tejaydimi?</strong>
+                        Javob "ha" bo'lmaguncha ishlashda davom etaman.
+                    </p>
+
+                    <div class="stats-row">
+
+                        <div>
+                            <div class="stat-num" data-target="3">0</div>
+
+                            <div class="stat-label" data-i18n="about.stat1">
+                                YIL TAJRIBA
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="stat-num" data-target="4">0</div>
+
+                            <div class="stat-label" data-i18n="about.stat2">
+                                ASOSIY TEXNOLOGIYA
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="stat-num" data-target="100">0</div>
+
+                            <div class="stat-label" data-i18n="about.stat3">
+                                % MOSLASHUVCHAN KOD
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="about-photo reveal-scale mono">
+                    <img src="img/5.jpg" alt="isom1ddinov">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="services.label">
+                02 — services
+            </div>
+
+            <div class="sec-title reveal" data-i18n="services.title">
+                Nima bilan yordam bera olaman
+            </div>
+
+            <p class="sec-sub reveal" data-i18n="services.subtitle">
+                Kichik landing sahifalardan tortib to'liq interaktiv veb-ilovalargacha.
+            </p>
+
+            <div class="services-grid stagger">
+
+                <div class="service-card reveal">
+                    <div class="idx mono">01</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="4" width="18" height="16" rx="2" />
+                        <path d="M3 9h18" />
+                    </svg>
+
+                    <h3 data-i18n="services.card1.title">
+                        Veb-sayt qurish
+                    </h3>
+
+                    <p data-i18n="services.card1.text">
+                        Semantik HTML va toza CSS asosida tezkor, responsive saytlar.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="idx mono">02</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 4l16 16M20 4L4 20" />
+                    </svg>
+
+                    <h3 data-i18n="services.card2.title">
+                        Interaktiv UI
+                    </h3>
+
+                    <p data-i18n="services.card2.text">
+                        JavaScript orqali animatsiya, scroll-effektlar va foydalanuvchi tajribasi.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="idx mono">03</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
+                    </svg>
+
+                    <h3 data-i18n="services.card3.title">
+                        Python avtomatlashtirish
+                    </h3>
+
+                    <p data-i18n="services.card3.text">
+                        Takrorlanuvchi vazifalarni skriptlar bilan avtomatlashtirish.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="idx mono">04</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 3" />
+                    </svg>
+
+                    <h3 data-i18n="services.card4.title">
+                        Performance
+                    </h3>
+
+                    <p data-i18n="services.card4.text">
+                        Tezkor yuklanadigan, optimallashtirilgan sahifalar.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="skills.label">
+                03 — skills
+            </div>
+
+            <div class="sec-title reveal" data-i18n="skills.title">
+                Texnik ko'nikmalar
+            </div>
+
+            <div class="skills-list">
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">HTML5</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="95"></div>
+                    </div>
+
+                    <div class="skill-pct">95%</div>
+                </div>
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">CSS3</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="90"></div>
+                    </div>
+
+                    <div class="skill-pct">90%</div>
+                </div>
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">JavaScript</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="85"></div>
+                    </div>
+
+                    <div class="skill-pct">85%</div>
+                </div>
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">Python</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="75"></div>
+                    </div>
+
+                    <div class="skill-pct">75%</div>
+                </div>
+
+            </div>
+
+            <div class="tools-grid stagger">
+
+                <div class="tool-chip reveal">Git</div>
+                <div class="tool-chip reveal">VS Code</div>
+                <div class="tool-chip reveal">Figma</div>
+                <div class="tool-chip reveal">npm</div>
+                <div class="tool-chip reveal">Chrome DevTools</div>
+                <div class="tool-chip reveal">Linux</div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="process.label">
+                04 — process
+            </div>
+
+            <div class="sec-title reveal" data-i18n="process.title">
+                Qanday ishlayman
+            </div>
+
+            <p class="sec-sub reveal" data-i18n="process.subtitle">
+                Har bir loyiha shu real ketma-ketlik bo'yicha davom etadi.
+            </p>
+
+            <div class="process-list">
+
+                <div class="process-item reveal">
+                    <div class="process-num">01</div>
+
+                    <div>
+                        <h3 data-i18n="process.step1.title">
+                            Tushunish
+                        </h3>
+
+                        <p data-i18n="process.step1.text">
+                            Loyiha maqsadi, auditoriya va texnik talablarni aniqlab olaman.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item reveal">
+                    <div class="process-num">02</div>
+
+                    <div>
+                        <h3 data-i18n="process.step2.title">
+                            Rejalashtirish
+                        </h3>
+
+                        <p data-i18n="process.step2.text">
+                            Struktura, komponentlar va texnologiyalarni belgilayman.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item reveal">
+                    <div class="process-num">03</div>
+
+                    <div>
+                        <h3 data-i18n="process.step3.title">
+                            Qurish
+                        </h3>
+
+                        <p data-i18n="process.step3.text">
+                            Toza, test qilingan kod bilan bosqichma-bosqich amalga oshiraman.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item reveal">
+                    <div class="process-num">04</div>
+
+                    <div>
+                        <h3 data-i18n="process.step4.title">
+                            Yetkazish
+                        </h3>
+
+                        <p data-i18n="process.step4.text">
+                            Test, optimallashtirish va joylashtirishdan so'ng natijani topshiraman.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="experience.label">
+                05 — experience
+            </div>
+
+            <div class="sec-title reveal" data-i18n="experience.title">
+                Tajriba
+            </div>
+
+            <div class="timeline">
+
+                <div class="tl-item reveal">
+                    <div class="tl-num">01</div>
+
+                    <div>
+                        <div class="tl-role" data-i18n="experience.item1.role">
+                            D4RK.SOFT — Yurutuvchi
+                        </div>
+
+                        <div class="tl-meta">
+                            D4RK.SOFT · 2025-2026
+                        </div>
+
+                        <div class="tl-desc" data-i18n="experience.item1.desc">
+                            D4RK.SOFT - loyihasida 2025 yil yuritishni boshlab
+                            ko'p odamlarni kod yozishga qiziqtirganman.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tl-item reveal">
+                    <div class="tl-num">02</div>
+
+                    <div>
+                        <div class="tl-role" data-i18n="experience.item2.role">
+                            prodent.uz — Expert
+                        </div>
+
+                        <div class="tl-meta">
+                            prodent.uz · 2026-20??
+                        </div>
+
+                        <div class="tl-desc" data-i18n="experience.item2.desc">
+                            prodent.uz - kompanyasida veb sayt, ilovamizni
+                            odamlarga tushuntirib ularga komak berib kelmoqdaman.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tl-item reveal">
+                    <div class="tl-num">03</div>
+
+                    <div>
+                        <div class="tl-role" data-i18n="experience.item3.role">
+                            isom1ddinov.uz — Developer
+                        </div>
+
+                        <div class="tl-meta">
+                            isom1ddinov.uz · 2026-2099
+                        </div>
+
+                        <div class="tl-desc" data-i18n="experience.item3.desc">
+                            isom1ddinov.uz - loyihasida ozimning hayotim,
+                            qilgan ishlarim va bilimlarimni ulashib bormoqdaman.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="projects.label">
+                06 — projects
+            </div>
+
+            <div class="sec-title reveal" data-i18n="projects.title">
+                Loyihalar
+            </div>
+
+            <p class="sec-sub reveal" data-i18n="projects.subtitle">
+                Kartani bosing — batafsil ma'lumot ochiladi.
+            </p>
+
+
+            <!-- FILTERS -->
+
+            <div class="project-filters reveal">
+
+                <button class="filter-btn active" data-filter="all" data-i18n="projects.filter.all">
+                    Barchasi
+                </button>
+
+                <button class="filter-btn" data-filter="web" data-i18n="projects.filter.web">
+                    Web
+                </button>
+
+                <button class="filter-btn" data-filter="script" data-i18n="projects.filter.script">
+                    Skript
+                </button>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <div class="projects-grid stagger" id="projectsGrid">
+
+
+                <!-- =========================
+                 D4RK SOFT
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="web" data-title="D4RK SOFT" data-desc=""
+                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.1.title" data-i18n-desc="project.1.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/1.jpg" alt="D4RK SOFT">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.1.title">
+                            D4RK SOFT
+                        </h3>
+
+                        <p data-i18n="project.1.short">
+                            Eng yaxshi qilgan saytlarimdan biri
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JS</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                 LANDGURU
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="web" data-title="Landguru" data-desc=""
+                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.2.title" data-i18n-desc="project.2.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/2.jpg" alt="Landguru">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.2.title">
+                            Landguru
+                        </h3>
+
+                        <p data-i18n="project.2.short">
+                            Mobil ilova uchun yaratilgan landing page
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JS</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                 AVTOXABAR
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="script" data-title="Avtoxabar" data-desc=""
+                    data-tags="HTML,Python" data-i18n-title="project.3.title" data-i18n-desc="project.3.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/4.png" alt="Avtoxabar">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.3.title">
+                            Avtoxabar
+                        </h3>
+
+                        <p data-i18n="project.3.short">
+                            Python asosida yozilgan Telegram avtoxabar
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>Python</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                 MOUNTAIN
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="web" data-title="Mountain" data-desc=""
+                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.4.title" data-i18n-desc="project.4.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/3.jpg" alt="Mountain">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.4.title">
+                            Mountain
+                        </h3>
+
+                        <p data-i18n="project.4.short">
+                            Qo'lda yozilgan eng yaxshi saytlarimdan biri
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JS</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+
+        <div class="wrap">
+
+            <div class="wrap-narrow">
+
+                <!-- SECTION LABEL -->
+                <div class="sec-label reveal" data-i18n="testimonials.label">
+                    07 — testimonials
+                </div>
+
+
+                <!-- SECTION TITLE -->
+                <div class="sec-title reveal" data-i18n="testimonials.title">
+                    Mijozlar fikri
+                </div>
+
+
+                <!-- TESTIMONIAL CAROUSEL -->
+                <div class="testimonial-carousel reveal">
+
+                    <div class="testimonial-track" id="testimonialTrack">
+
+                        <!-- COMMENT 1 -->
+                        <div class="testimonial-slide">
+
+                            <div class="testimonial-card">
+
+                                <p>
+                                    Ishlariz chindan zor ekan siz bilan ishlaganimdan xursandman.
+                                </p>
+
+                                <div class="testimonial-name">
+                                    Anvarbek Toshov
+                                </div>
+
+                                <div class="testimonial-role">
+                                    Stamatolog, Wallnut Tree
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COMMENT 2 -->
+                        <div class="testimonial-slide">
+
+                            <div class="testimonial-card">
+
+                                <p>
+                                    ishlarizga omad raxmat zor tayyorlab berdiz.
+                                </p>
+
+                                <div class="testimonial-name">
+                                    Shoxruh
+                                </div>
+
+                                <div class="testimonial-role">
+                                    Nomalum, Nomalum
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COMMENT 3 -->
+                        <div class="testimonial-slide">
+
+                            <div class="testimonial-card">
+
+                                <p>
+                                    Ого, я видел ваши работы они просто отличные.
+                                </p>
+
+                                <div class="testimonial-name">
+                                    Lina
+                                </div>
+
+                                <div class="testimonial-role">
+                                    Logist, diip.uz
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CAROUSEL DOTS -->
+                    <div class="carousel-dots" id="carouselDots"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Navbar'ga qo'shiladigan havola -->
+    <div class="wrap" id="comments">
+        <div class="sec-label reveal" data-i18n="commemts.label">
+                    08 — comments
+                </div>
+                <div class="sec-title reveal" data-i18n="comments.title">
+                    Izoxlar
+                </div>
+    </div>
+
+
+                <!-- SECTION TITLE -->
+                
+    <!-- Otzivi / Izohlar Bo'limi -->
+    <section id="reviews-section" class="reviews-container">
+        
+
+        <!-- Auth Blok: Tizimga kirish yoki ro'yxatdan o'tish -->
+        <div id="auth-block" class="auth-card">
+            <form id="auth-form" onsubmit="event.preventDefault(); handleAuth();">
+                <div class="auth-tabs">
+                <button id="tab-login" class="active" onclick="toggleAuthTab('login')">Login</button>
+                <button id="tab-register" onclick="toggleAuthTab('register')">Sign Up</button>
+            </div>
+                <input type="text" id="auth-username" placeholder="Foydalanuvchi nomi" required>
+                <input type="password" id="auth-password" placeholder="Parol" required>
+                <button type="button" id="auth-submit-btn" onclick="handleAuth()">Login</button>
+            </form>
+        </div>
+
+        <!-- User Profile va Logout bloki -->
+        <div class="div">
+            <div id="user-block" class="user-card" style="display: none;">
+            <span>Welcome, <b id="user-display-name"></b> <span id="user-badge"></span></span>
+            <button onclick="logout()" class="btn-logout">Log Out</button>
+        </div>
+
+        <!-- Izoh qoldirish formasi -->
+        <div id="comment-form-block" class="comment-form-card" style="display: none;">
+            <textarea id="comment-text" placeholder="Share your thoughts..." rows="3"></textarea>
+            <button onclick="postComment()" class="btn-send">Send</button>
+        </div>
+        </div>
+
+        <!-- Izohlar Ro'yxati -->
+        <div id="comments-list" class="comments-list">
+            <!-- Izohlar JavaScript orqali yuklanadi -->
+            
+        </div>
+
+        <!-- Barcha izohlarni ko'rish tugmasi -->
+        
+    </section>
+    <div id="comments-toggle-container" style="text-align: center;"></div>
+
+    <style>
+        /* Javoblar (Replies) konteyneri - Ichkariga surilgan */
         .replies-container {
             margin-left: 30px;
             margin-top: 10px;
             padding-left: 12px;
             border-left: 2px solid rgba(255, 255, 255, 0.1);
             display: none;
+            /* Dastlab yashiringan bo'ladi */
         }
 
+        /* Instagram uslubidagi javoblarni ko'rish tugmasi */
         .btn-view-replies {
             background: transparent;
             border: none;
@@ -1919,6 +2827,7 @@
             color: var(--accent, #39ff7f);
         }
 
+        /* Javob yozish (Reply Form) formasi */
         .reply-form-box {
             margin-top: 10px;
             display: flex;
@@ -1948,6 +2857,7 @@
             color: #39ff7f;
         }
 
+        /* Izohlar bo'limi umumiy konteyneri */
         .reviews-container {
             max-width: 1040px;
             padding: 18px;
@@ -1958,6 +2868,9 @@
             margin-bottom: 0;
         }
 
+
+
+        /* Glassmorphism kartochkalar */
         .user-card,
         .comment-form-card {
             background: color-mix(in srgb, var(--bg, #0d1117) 80%, transparent);
@@ -1980,26 +2893,23 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 100% !important;
         }
-
         .div {
             width: 100% !important;
             margin-right: 15px;
         }
 
+        /* Auth Tablar */
         .auth-tabs {
             display: flex;
             gap: 10px;
             margin-top: 20px;
         }
-
         #auth-username {
             margin: 20px 0px;
         }
-
         #auth-password {
             margin-bottom: 20px;
         }
-
         .btn-toggle-comments {
             margin-bottom: 40px !important;
         }
@@ -2066,6 +2976,7 @@
             margin-left: 15px;
         }
 
+        /* Izohlar Kartochkasi */
         .comment-item {
             background: #1e1e1e;
             border: 1px solid #2a2d2e;
@@ -2074,7 +2985,10 @@
             margin-bottom: 15px;
             width: 100% !important;
         }
-
+        
+        .auth-form {
+            width: 40%;
+        }
         .comments-list {
             width: 100% !important;
         }
@@ -2086,11 +3000,13 @@
             margin-bottom: 8px;
         }
 
+        /* Oddiy foydalanuvchi niki */
         .author-name {
             font-weight: 200;
             color: #ffffff;
         }
 
+        /* CREATOR (isom1ddinov) niki stili */
         .author-name.creator-name {
             color: #ff3939 !important;
             text-shadow: 0 0 10px rgba(57, 255, 127, 0.6);
@@ -2098,6 +3014,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* CREATOR BADGE */
         .badge-creator {
             background: linear-gradient(135deg, #00ff15, #5eff56);
             color: #fff;
@@ -2120,17 +3037,18 @@
             line-height: 1.5;
             word-break: break-word;
         }
-
         #comment-text {
             width: 100%;
             height: 100px;
         }
-
-        .btn-send,
+        .btn-send {
+            width: 100%;
+        }
         #auth-submit-btn {
             width: 100%;
         }
 
+        /* O'chirish tugmasi */
         .btn-delete {
             background: transparent;
             border: 1px solid #ff5f56;
@@ -2148,6 +3066,7 @@
             color: #fff;
         }
 
+        /* Barcha izohlarni ko'rish tugmasi */
         .btn-toggle-comments {
             background: transparent;
             border: 1px solid #39ff7f;
@@ -2168,969 +3087,582 @@
             transform: translateY(-2px);
         }
 
-        .author-name.founder-name {
-            color: #39ff7f !important;
-            text-shadow: 0 0 12px rgba(57, 255, 127, 0.7);
-            font-size: 15px;
-            font-weight: bold;
-        }
+        /* Founder badji va stili */
+.author-name.founder-name {
+    color: #39ff7f !important;
+    text-shadow: 0 0 12px rgba(57, 255, 127, 0.7);
+    font-size: 15px;
+    font-weight: bold;
+}
 
-        .badge-founder {
-            background: linear-gradient(135deg, #39ff7f, #00e5ff);
-            color: #000;
-            font-size: 10px;
-            font-weight: 900;
-            padding: 3px 8px;
-            border-radius: 8px;
-            margin-left: 8px;
-            text-transform: uppercase;
-            box-shadow: 0 0 10px rgba(57, 255, 127, 0.4);
-        }
+.badge-founder {
+    background: linear-gradient(135deg, #39ff7f, #00e5ff);
+    color: #000;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 3px 8px;
+    border-radius: 8px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(57, 255, 127, 0.4);
+}
 
-        .badge-admin {
-            background: linear-gradient(135deg, #00ff2f, #00ff1e);
-            color: #000000;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 8px;
-            margin-left: 8px;
-            text-transform: uppercase;
-        }
+.badge-admin {
+    background: linear-gradient(135deg, #00ff2f, #00ff1e);
+    color: #000000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 8px;
+    margin-left: 8px;
+    text-transform: uppercase;
+}
 
-        .comment-item.pinned-comment {
-            border: 1px solid #39ff7f !important;
-            background: color-mix(in srgb, var(--accent, #39ff7f) 5%, transparent);
-            box-shadow: 0 0 20px rgba(57, 255, 127, 0.15);
+/* Qadalgan izoh ramkasi */
+.comment-item.pinned-comment {
+    border: 1px solid #39ff7f !important;
+    background: color-mix(in srgb, var(--accent, #39ff7f) 5%, transparent);
+    box-shadow: 0 0 20px rgba(57, 255, 127, 0.15);
+    width: 100% !important;
+}
+
+.badge-pinned {
+    background: #39ff7f;
+    color: #000;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 7px;
+    border-radius: 6px;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    width: 30px;
+    height: 22px;
+}
+
+.pinn {
+    width: 18px !important;
+    height: 17px !important;
+}
+
+        .user-card {
             width: 100% !important;
+            margin-bottom: 15px;
+        }
+        .comment-form-card {
+            width: 100% !important;
+            margin-bottom: 15px !important;
         }
 
-        .badge-pinned {
-            background: #39ff7f;
-            color: #000;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 7px;
-            border-radius: 6px;
-            margin-right: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            width: 30px;
-            height: 22px;
-        }
+.heardd {
+    width: 16px !important;
+    height: 16px !important;
+}
 
-        .pinn {
-            width: 18px !important;
-            height: 17px !important;
-        }
+.gang {
+    align-items: center !important;
+    display: flex !important;
+}
 
-        .heardd {
-            width: 16px !important;
-            height: 16px !important;
-        }
+.comment-date {
+    align-items: end !important;
+    margin-left: auto !important;
+}
 
-        .gang {
-            align-items: center !important;
-            display: flex !important;
-        }
+.comment-header {
+    align-items: center !important;
+}
 
-        .comment-date {
-            align-items: end !important;
-            margin-left: auto !important;
-        }
+/* Minimalistik Neon Tugmalar */
+.comment-footer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-        .comment-header {
-            align-items: center !important;
-        }
+.btn-action-icon {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d4d4d4;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
 
-        .comment-footer-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 10px;
-            padding-top: 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
+.btn-action-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
 
-        .btn-action-icon {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #d4d4d4;
-            font-size: 12px;
-            padding: 5px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.25s ease;
-        }
+.btn-action-icon:hover {
+    border-color: #39ff7f;
+    color: #39ff7f;
+    box-shadow: 0 0 10px rgba(57, 255, 127, 0.3);
+}
 
-        .btn-action-icon svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
+.badge-founder-liked {
+    background: rgba(57, 255, 127, 0.1);
+    border: 1px solid #39ff7f;
+    color: #39ff7f;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
 
-        .btn-action-icon:hover {
-            border-color: #39ff7f;
-            color: #39ff7f;
-            box-shadow: 0 0 10px rgba(57, 255, 127, 0.3);
-        }
+.comment-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
 
-        .badge-founder-liked {
-            background: rgba(57, 255, 127, 0.1);
-            border: 1px solid #39ff7f;
-            color: #39ff7f;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
+.btn-admin-action {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #aaa;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.2s;
+}
 
-        .comment-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
+.btn-admin-action:hover {
+    border-color: #39ff7f;
+    color: #39ff7f;
+}
 
-        .btn-admin-action {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #aaa;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.2s;
-        }
+#comments {
+    padding-top: 70px;
+}
 
-        .btn-admin-action:hover {
-            border-color: #39ff7f;
-            color: #39ff7f;
-        }
+.btn-delete-action:hover {
+    border-color: #ff5f56;
+    color: #ff5f56;
+}
 
-        #comments {
-            padding-top: 70px;
-        }
 
-        .btn-delete-action:hover {
-            border-color: #ff5f56;
-            color: #ff5f56;
-        }
     </style>
-</head>
 
-<body>
-    <div id="toast" class="toast"></div>
-
-    <div id="scroll-progress"></div>
-
-    <div id="loader">
-        <div class="loader-logo">isom1ddinov<span class="dot">.</span>uz</div>
-        <div class="bar-track">
-            <div class="bar-fill" id="loaderBar"></div>
-        </div>
-        <span class="pct" id="loadpct">0%</span>
-    </div>
-
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
-    <canvas id="cursor-trail-canvas"></canvas>
-
-    <nav>
-        <div class="wrap">
-            <!-- LOGO -->
-            <div class="nav-logo">
-                isom1ddinov<span style="color:var(--accent)">.</span>uz
-            </div>
-
-            <!-- DESKTOP MENU -->
-            <div class="nav-links" id="navLinks">
-                <a href="#about" data-nav>about</a>
-                <a href="#services" data-nav>services</a>
-                <a href="#skills" data-nav>skills</a>
-                <a href="#process" data-nav>process</a>
-                <a href="#projects" data-nav>projects</a>
-                <a href="#comments" data-nav>comments</a>
-                <a href="#faq" data-nav>faq</a>
-                <a href="#contact" data-nav>contact</a>
-            </div>
-
-            <!-- LANGUAGE -->
-            <div class="language-dropdown">
-                <button class="language-btn" id="languageBtn" type="button" aria-label="Tilni tanlash">
-                    <i class="fa-solid fa-globe"></i>
-                    <span id="currentLanguage">UZ</span>
-                    <i class="fa-solid fa-chevron-down arrow"></i>
-                </button>
-
-                <div class="language-menu" id="languageMenu">
-                    <button class="language-item active" data-lang="uz" type="button">UZ</button>
-                    <button class="language-item" data-lang="ru" type="button">RU</button>
-                    <button class="language-item" data-lang="en" type="button">EN</button>
-                </div>
-            </div>
-
-            <!-- RIGHT CONTROLS -->
-            <div style="display:flex; align-items:center; gap:14px;">
-                <button class="theme-toggle" id="themeToggle" title="Mavzuni almashtirish">◐</button>
-                <div class="nav-burger" id="navBurger"><span></span><span></span><span></span></div>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <canvas id="particles"></canvas>
-        <div class="wrap">
-            <div class="hero-inner">
-                <div class="eyebrow-row">
-                    <div class="status-dot"></div>
-                    <div class="prompt-line" data-i18n="hero.status">
-                        yangi loyihalarga ochiqman
-                    </div>
-                </div>
-                <h1 id="typed-name"></h1>
-                <div class="role-cycle mono">&gt; <span id="roleCycle" class="rc-accent"></span><span
-                        class="cursor-blink">&nbsp;</span></div>
-                <p class="desc" data-i18n="hero.description">Frontend dasturchi — 3 yillik tajriba. HTML, CSS,
-                    JavaScript va Python bilan g'oyalarni
-                    ishlaydigan, tez va sinchkovlik bilan qurilgan interfeyslarga aylantiraman.</p>
-                <div class="hero-tags">
-                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
-                        class="tag">Python</span>
-                </div>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary" data-i18n="hero.projects">
-                        Loyihalarni ko'rish
-                    </a>
-                    <a href="#contact" class="btn btn-ghost" data-i18n="hero.contact">
-                        Bog'lanish
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-hint">
-            <div class="line"></div>SCROLL
-        </div>
-        <div class="hero-coords mono">41.2995° N<br>69.2401° E</div>
-    </section>
-
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
-                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
-                class="dot">●</span>
-            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
-                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
-                class="dot">●</span>
-            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
-                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
-                class="dot">●</span>
-            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
-                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
-                class="dot">●</span>
-        </div>
-    </div>
-
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="wrap">
-            <div class="sec-label reveal" data-i18n="about.label">
-                01 — about
-            </div>
-            <div class="sec-title reveal" data-i18n="about.title">
-                Kim bu isom1ddinov?
-            </div>
-            <div class="about-grid">
-                <div class="about reveal">
-                    <p data-i18n="about.text1">
-                        <strong>isom1ddinov</strong> — frontend yo'nalishida ishlaydigan dasturchi.
-                        So'nggi 3 yil davomida veb-interfeyslar qurish, statik saytlardan tortib
-                        interaktiv veb-ilovalargacha bo'lgan loyihalar ustida ishlaganman.
-                    </p>
-                    <p data-i18n="about.text2">
-                        Kodni aniq, o'qilishi oson va uzoq muddat qo'llab-quvvatlanadigan qilib yozishga
-                        harakat qilaman. Frontendda vizual detallarga, Python orqali esa avtomatlashtirish
-                        va muammolarni yechishga qiziqaman.
-                    </p>
-                    <p data-i18n="about.text3">
-                        Har bir loyihada bitta savolni beraman:
-                        <strong>bu interfeys odamning vaqtini tejaydimi?</strong>
-                        Javob "ha" bo'lmaguncha ishlashda davom etaman.
-                    </p>
-                    <div class="stats-row">
-                        <div>
-                            <div class="stat-num" data-target="3">0</div>
-                            <div class="stat-label" data-i18n="about.stat1">
-                                YIL TAJRIBA
-                            </div>
-                        </div>
-                        <div>
-                            <div class="stat-num" data-target="4">0</div>
-                            <div class="stat-label" data-i18n="about.stat2">
-                                ASOSIY TEXNOLOGIYA
-                            </div>
-                        </div>
-                        <div>
-                            <div class="stat-num" data-target="100">0</div>
-                            <div class="stat-label" data-i18n="about.stat3">
-                                % MOSLASHUVCHAN KOD
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-photo reveal-scale mono">
-                    <img src="img/5.jpg" alt="isom1ddinov">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-        <div class="wrap">
-            <div class="sec-label reveal" data-i18n="services.label">
-                02 — services
-            </div>
-            <div class="sec-title reveal" data-i18n="services.title">
-                Nima bilan yordam bera olaman
-            </div>
-            <p class="sec-sub reveal" data-i18n="services.subtitle">
-                Kichik landing sahifalardan tortib to'liq interaktiv veb-ilovalargacha.
-            </p>
-            <div class="services-grid stagger">
-                <div class="service-card reveal">
-                    <div class="idx mono">01</div>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="3" y="4" width="18" height="16" rx="2" />
-                        <path d="M3 9h18" />
-                    </svg>
-                    <h3 data-i18n="services.card1.title">
-                        Veb-sayt qurish
-                    </h3>
-                    <p data-i18n="services.card1.text">
-                        Semantik HTML va toza CSS asosida tezkor, responsive saytlar.
-                    </p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="idx mono">02</div>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M4 4l16 16M20 4L4 20" />
-                    </svg>
-                    <h3 data-i18n="services.card2.title">
-                        Interaktiv UI
-                    </h3>
-                    <p data-i18n="services.card2.text">
-                        JavaScript orqali animatsiya, scroll-effektlar va foydalanuvchi tajribasi.
-                    </p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="idx mono">03</div>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
-                    </svg>
-                    <h3 data-i18n="services.card3.title">
-                        Python avtomatlashtirish
-                    </h3>
-                    <p data-i18n="services.card3.text">
-                        Takrorlanuvchi vazifalarni skriptlar bilan avtomatlashtirish.
-                    </p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="idx mono">04</div>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <circle cx="12" cy="12" r="9" />
-                        <path d="M12 7v5l3 3" />
-                    </svg>
-                    <h3 data-i18n="services.card4.title">
-                        Performance
-                    </h3>
-                    <p data-i18n="services.card4.text">
-                        Tezkor yuklanadigan, optimallashtirilgan sahifalar.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="wrap">
-            <div class="sec-label reveal" data-i18n="skills.label">
-                03 — skills
-            </div>
-            <div class="sec-title reveal" data-i18n="skills.title">
-                Texnik ko'nikmalar
-            </div>
-            <div class="skills-list">
-                <div class="skill-row reveal">
-                    <div class="skill-name">HTML5</div>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-pct="95"></div>
-                    </div>
-                    <div class="skill-pct">95%</div>
-                </div>
-                <div class="skill-row reveal">
-                    <div class="skill-name">CSS3</div>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-pct="90"></div>
-                    </div>
-                    <div class="skill-pct">90%</div>
-                </div>
-                <div class="skill-row reveal">
-                    <div class="skill-name">JavaScript</div>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-pct="85"></div>
-                    </div>
-                    <div class="skill-pct">85%</div>
-                </div>
-                <div class="skill-row reveal">
-                    <div class="skill-name">Python</div>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-pct="75"></div>
-                    </div>
-                    <div class="skill-pct">75%</div>
-                </div>
-            </div>
-            <div class="tools-grid stagger">
-                <div class="tool-chip reveal">Git</div>
-                <div class="tool-chip reveal">VS Code</div>
-                <div class="tool-chip reveal">Figma</div>
-                <div class="tool-chip reveal">npm</div>
-                <div class="tool-chip reveal">Chrome DevTools</div>
-                <div class="tool-chip reveal">Linux</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process">
-        <div class="wrap">
-            <div class="sec-label reveal" data-i18n="process.label">
-                04 — process
-            </div>
-            <div class="sec-title reveal" data-i18n="process.title">
-                Qanday ishlayman
-            </div>
-            <p class="sec-sub reveal" data-i18n="process.subtitle">
-                Har bir loyiha shu real ketma-ketlik bo'yicha davom etadi.
-            </p>
-            <div class="process-list">
-                <div class="process-item reveal">
-                    <div class="process-num">01</div>
-                    <div>
-                        <h3 data-i18n="process.step1.title">
-                            Tushunish
-                        </h3>
-                        <p data-i18n="process.step1.text">
-                            Loyiha maqsadi, auditoriya va texnik talablarni aniqlab olaman.
-                        </p>
-                    </div>
-                </div>
-                <div class="process-item reveal">
-                    <div class="process-num">02</div>
-                    <div>
-                        <h3 data-i18n="process.step2.title">
-                            Rejalashtirish
-                        </h3>
-                        <p data-i18n="process.step2.text">
-                            Struktura, komponentlar va texnologiyalarni belgilayman.
-                        </p>
-                    </div>
-                </div>
-                <div class="process-item reveal">
-                    <div class="process-num">03</div>
-                    <div>
-                        <h3 data-i18n="process.step3.title">
-                            Qurish
-                        </h3>
-                        <p data-i18n="process.step3.text">
-                            Toza, test qilingan kod bilan bosqichma-bosqich amalga oshiraman.
-                        </p>
-                    </div>
-                </div>
-                <div class="process-item reveal">
-                    <div class="process-num">04</div>
-                    <div>
-                        <h3 data-i18n="process.step4.title">
-                            Yetkazish
-                        </h3>
-                        <p data-i18n="process.step4.text">
-                            Test, optimallashtirish va joylashtirishdan so'ng natijani topshiraman.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <div class="wrap">
-            <div class="sec-label reveal" data-i18n="experience.label">
-                05 — experience
-            </div>
-            <div class="sec-title reveal" data-i18n="experience.title">
-                Tajriba
-            </div>
-            <div class="timeline">
-                <div class="tl-item reveal">
-                    <div class="tl-num">01</div>
-                    <div>
-                        <div class="tl-role" data-i18n="experience.item1.role">
-                            D4RK.SOFT — Yurutuvchi
-                        </div>
-                        <div class="tl-meta">
-                            D4RK.SOFT · 2025-2026
-                        </div>
-                        <div class="tl-desc" data-i18n="experience.item1.desc">
-                            D4RK.SOFT - loyihasida 2025 yil yuritishni boshlab
-                            ko'p odamlarni kod yozishga qiziqtirganman.
-                        </div>
-                    </div>
-                </div>
-                <div class="tl-item reveal">
-                    <div class="tl-num">02</div>
-                    <div>
-                        <div class="tl-role" data-i18n="experience.item2.role">
-                            prodent.uz — Expert
-                        </div>
-                        <div class="tl-meta">
-                            prodent.uz · 2026-20??
-                        </div>
-                        <div class="tl-desc" data-i18n="experience.item2.desc">
-                            prodent.uz - kompanyasida veb sayt, ilovamizni
-                            odamlarga tushuntirib ularga komak berib kelmoqdaman.
-                        </div>
-                    </div>
-                </div>
-                <div class="tl-item reveal">
-                    <div class="tl-num">03</div>
-                    <div>
-                        <div class="tl-role" data-i18n="experience.item3.role">
-                            isom1ddinov.uz — Developer
-                        </div>
-                        <div class="tl-meta">
-                            isom1ddinov.uz · 2026-2099
-                        </div>
-                        <div class="tl-desc" data-i18n="experience.item3.desc">
-                            isom1ddinov.uz - loyihasida ozimning hayotim,
-                            qilgan ishlarim va bilimlarimni ulashib bormoqdaman.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="wrap">
-            <div class="sec-label reveal" data-i18n="projects.label">
-                06 — projects
-            </div>
-            <div class="sec-title reveal" data-i18n="projects.title">
-                Loyihalar
-            </div>
-            <p class="sec-sub reveal" data-i18n="projects.subtitle">
-                Kartani bosing — batafsil ma'lumot ochiladi.
-            </p>
-
-            <div class="project-filters reveal">
-                <button class="filter-btn active" data-filter="all" data-i18n="projects.filter.all">
-                    Barchasi
-                </button>
-                <button class="filter-btn" data-filter="web" data-i18n="projects.filter.web">
-                    Web
-                </button>
-                <button class="filter-btn" data-filter="script" data-i18n="projects.filter.script">
-                    Skript
-                </button>
-            </div>
-
-            <div class="projects-grid stagger" id="projectsGrid">
-                <div class="project-card reveal" data-cat="web" data-title="D4RK SOFT"
-                    data-desc="'D4RK SOFT' - loyihasida veb saytlar yaratib ozimni ilk blogimni yurutganman va Instagram, YouTube, TikTok, Telegramda ozimni shaxsiy bloglarimni yuritganman har xil dasturchikda bog'liq foydali videolar chiqarganman va hozirda yangi proekt va ishlar bilan bolib uni yuritmay qoyganman lekin yana yuritish niyatim bor."
-                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.1.title" data-i18n-desc="project.1.desc">
-                    <div class="project-thumb">
-                        <img src="img/1.jpg" alt="D4RK SOFT">
-                    </div>
-                    <div class="project-body">
-                        <h3 data-i18n="project.1.title">
-                            D4RK SOFT
-                        </h3>
-                        <p data-i18n="project.1.short">
-                            Eng yaxshi qilgan saytlarimdan biri
-                        </p>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card reveal" data-cat="web" data-title="Landguru"
-                    data-desc="'Landguru' - bu dasturlash organish davomida qilgan ishlarimdan bolib unda har xil hover effectaridan foydalangan holda HTML, CSS dan tashkil topgan vebsayt va hozirda bu serverga qoyilgan."
-                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.2.title" data-i18n-desc="project.2.desc">
-                    <div class="project-thumb">
-                        <img src="img/2.jpg" alt="Landguru">
-                    </div>
-                    <div class="project-body">
-                        <h3 data-i18n="project.2.title">
-                            Landguru
-                        </h3>
-                        <p data-i18n="project.2.short">
-                            Mobil ilova uchun yaratilgan landing page
-                        </p>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card reveal" data-cat="script" data-title="Avtoxabar"
-                    data-desc="'Avtoxabar' - bu men lagistika sohasiga qiziqganligim va ishlaganim uchun yaratilgan, va men bunda reklamalarni qolda yozib jonatishni osonlashtirish maqsadida yaratganman va albatta VPS ham ishlatganman bu ishni ancha yengillashtirgan."
-                    data-tags="HTML,Python" data-i18n-title="project.3.title" data-i18n-desc="project.3.desc">
-                    <div class="project-thumb">
-                        <img src="img/4.png" alt="Avtoxabar">
-                    </div>
-                    <div class="project-body">
-                        <h3 data-i18n="project.3.title">
-                            Avtoxabar
-                        </h3>
-                        <p data-i18n="project.3.short">
-                            Python asosida yozilgan Telegram avtoxabar
-                        </p>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>Python</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card reveal" data-cat="web" data-title="Mountain"
-                    data-desc="'Mountain' - bu saytimni js organayotganimda js ham qoshib har xil dizaynlar va sokin musiqalar bilan aynan tog'ni vaybini beradigan qilib yasaganman bu ham eng yaxshi qilgan ishlarimdan biridir."
-                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.4.title" data-i18n-desc="project.4.desc">
-                    <div class="project-thumb">
-                        <img src="img/3.jpg" alt="Mountain">
-                    </div>
-                    <div class="project-body">
-                        <h3 data-i18n="project.4.title">
-                            Mountain
-                        </h3>
-                        <p data-i18n="project.4.short">
-                            Qo'lda yozilgan eng yaxshi saytlarimdan biri
-                        </p>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JS</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-        <div class="wrap">
-            <div class="wrap-narrow">
-                <div class="sec-label reveal" data-i18n="testimonials.label">
-                    07 — testimonials
-                </div>
-                <div class="sec-title reveal" data-i18n="testimonials.title">
-                    Mijozlar fikri
-                </div>
-                <div class="testimonial-carousel reveal">
-                    <div class="testimonial-track" id="testimonialTrack">
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card">
-                                <p>Ishlariz chindan zor ekan siz bilan ishlaganimdan xursandman.</p>
-                                <div class="testimonial-name">Anvarbek Toshov</div>
-                                <div class="testimonial-role">Stamatolog, Wallnut Tree</div>
-                            </div>
-                        </div>
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card">
-                                <p>ishlarizga omad raxmat zor tayyorlab berdiz.</p>
-                                <div class="testimonial-name">Shoxruh</div>
-                                <div class="testimonial-role">Nomalum, Nomalum</div>
-                            </div>
-                        </div>
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card">
-                                <p>Ого, я видел ваши работы они просто отличные.</p>
-                                <div class="testimonial-name">Lina</div>
-                                <div class="testimonial-role">Logist, diip.uz</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-dots" id="carouselDots"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMMENTS SALLANMA VA BO'LIMI -->
-    <div class="wrap" id="comments">
-        <div class="sec-label reveal" data-i18n="comments.label">
-            08 — comments
-        </div>
-        <div class="sec-title reveal" data-i18n="comments.title">
-            Izoxlar
-        </div>
-    </div>
-
-    <section id="reviews-section" class="reviews-container">
-        <!-- Auth Blok: Tizimga kirish yoki ro'yxatdan o'tish -->
-        <div id="auth-block" class="auth-card">
-            <form id="auth-form" onsubmit="event.preventDefault(); handleAuth();">
-                <div class="auth-tabs">
-                    <button type="button" id="tab-login" class="active" onclick="toggleAuthTab('login')">Kirish</button>
-                    <button type="button" id="tab-register" onclick="toggleAuthTab('register')">Ro'yxatdan
-                        o'tish</button>
-                </div>
-                <input type="text" id="auth-username" placeholder="Foydalanuvchi nomi" required>
-                <input type="password" id="auth-password" placeholder="Parol" required>
-                <button type="button" id="auth-submit-btn" onclick="handleAuth()">Kirish</button>
-            </form>
-        </div>
-
-        <!-- User Profile va Logout bloki -->
-        <div class="div">
-            <div id="user-block" class="user-card" style="display: none;">
-                <span>Xush kelibsiz, <b id="user-display-name"></b> <span id="user-badge"></span></span>
-                <button onclick="logout()" class="btn-logout">Chiqish</button>
-            </div>
-
-            <!-- Izoh qoldirish formasi -->
-            <div id="comment-form-block" class="comment-form-card" style="display: none;">
-                <textarea id="comment-text" placeholder="Fikringizni yozib qoldiring..." rows="3"></textarea>
-                <button onclick="postComment()" class="btn-send">Yuborish</button>
-            </div>
-        </div>
-
-        <!-- Izohlar Ro'yxati -->
-        <div id="comments-list" class="comments-list">
-            <!-- Izohlar JavaScript orqali yuklanadi -->
-        </div>
-    </section>
-    <div id="comments-toggle-container" style="text-align: center;"></div>
 
     <!-- FACTS -->
     <section id="facts" style="padding:0; border-bottom:1px solid var(--border);">
+
         <div class="facts-grid reveal">
+
             <div class="fact-cell">
-                <div class="n mono">30+</div>
-                <div class="l" data-i18n="facts.1">bajarilgan vazifalar</div>
+
+                <div class="n mono">
+                    30+
+                </div>
+
+                <div class="l" data-i18n="facts.1">
+                    bajarilgan vazifalar
+                </div>
+
             </div>
+
+
             <div class="fact-cell">
-                <div class="n mono">3</div>
-                <div class="l" data-i18n="facts.2">yillik tajriba</div>
+
+                <div class="n mono">
+                    3
+                </div>
+
+                <div class="l" data-i18n="facts.2">
+                    yillik tajriba
+                </div>
+
             </div>
+
+
             <div class="fact-cell">
-                <div class="n mono">4</div>
-                <div class="l" data-i18n="facts.3">asosiy texnologiya</div>
+
+                <div class="n mono">
+                    4
+                </div>
+
+                <div class="l" data-i18n="facts.3">
+                    asosiy texnologiya
+                </div>
+
             </div>
+
+
             <div class="fact-cell">
-                <div class="n mono">100%</div>
-                <div class="l" data-i18n="facts.4">o'z vaqtida topshirish</div>
+
+                <div class="n mono">
+                    100%
+                </div>
+
+                <div class="l" data-i18n="facts.4">
+                    o'z vaqtida topshirish
+                </div>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <!-- BLOG / CODING -->
     <section id="blog">
+
         <div class="wrap">
+
             <div class="sec-label reveal" data-i18n="blog.label">
-                09 — Coding
+                08 — Coding
             </div>
+
+
             <div class="sec-title reveal" data-i18n="blog.title">
                 Kodlar
             </div>
+
+
             <p class="sec-sub reveal" data-i18n="blog.subtitle">
                 Frontend va Python haqida yozgan qisqa qaydlar (placeholder).
             </p>
 
+
             <div class="blog-grid stagger">
+
                 <div class="blog-card reveal">
+
                     <div class="blog-date" data-i18n="blog.date">
                         2026 · Kod
                     </div>
+
+
                     <div class="code-window">
+
                         <div class="code-header">
                             <span class="circle red"></span>
                             <span class="circle yellow"></span>
                             <span class="circle green"></span>
+
                             <span class="file">
                                 <img src="img/js.svg" alt="">
                                 app.js
                             </span>
                         </div>
+
                         <pre
                             class="code-content"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> <span class="code-symbol">=</span> <span class="code-bracket">{</span>
     <span class="code-property">name</span><span class="code-symbol">:</span> <span class="code-string">"Ozodbek Isomiddinov"</span><span class="code-symbol">,</span>
+
     <span class="code-property">skills</span><span class="code-symbol">:</span> <span class="code-bracket">[</span>
         <span class="code-string">"HTML"</span><span class="code-symbol">,</span>
         <span class="code-string">"CSS"</span><span class="code-symbol">,</span>
         <span class="code-string">"JavaScript"</span><span class="code-symbol">,</span>
         <span class="code-string">"Python"</span>
     <span class="code-bracket">]</span><span class="code-symbol">,</span>
+
     <span class="code-property">experience</span><span class="code-symbol">:</span> <span class="code-number">3</span><span class="code-symbol">,</span>
     <span class="code-property">availableForWork</span><span class="code-symbol">:</span> <span class="code-boolean">true</span>
 <span class="code-bracket">}</span><span class="code-symbol">;</span>
+
 <span class="code-function">console</span><span class="code-symbol">.</span><span class="code-method">log</span><span class="code-symbol">(</span><span class="code-string">"Welcome to my Portfolio 🚀"</span><span class="code-symbol">);</span></code></pre>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
     <!-- FAQ -->
     <section id="faq">
+
         <div class="wrap">
+
             <div class="wrap-narrow">
+
                 <div class="sec-label reveal" data-i18n="faq.label">
-                    10 — faq
+                    09 — faq
                 </div>
+
                 <div class="sec-title reveal" data-i18n="faq.title">
                     Ko'p so'raladigan savollar
                 </div>
 
+
                 <div class="faq-list reveal">
+
+                    <!-- FAQ 1 -->
                     <div class="faq-item">
+
                         <button class="faq-q">
-                            <span data-i18n="faq.1.question">Loyiha narxi qanday belgilanadi?</span>
+
+                            <span data-i18n="faq.1.question">
+                                Loyiha narxi qanday belgilanadi?
+                            </span>
+
                             <span class="plus">+</span>
+
                         </button>
+
                         <div class="faq-a">
+
                             <div class="faq-a-inner" data-i18n="faq.1.answer">
-                                Loyiha narxi odatda uni qanchalik katta va uni dizayn va animatsiyalariga qarab
-                                belgilanadi.
+                                Loyiha narxi odatda uni qanchalik katta
+                                va uni dizayn va animatsiyalariga qarab belgilanadi.
                             </div>
+
                         </div>
+
                     </div>
 
+
+                    <!-- FAQ 2 -->
                     <div class="faq-item">
+
                         <button class="faq-q">
-                            <span data-i18n="faq.2.question">Loyiha qancha vaqtda tayyor bo'ladi?</span>
+
+                            <span data-i18n="faq.2.question">
+                                Loyiha qancha vaqtda tayyor bo'ladi?
+                            </span>
+
                             <span class="plus">+</span>
+
                         </button>
+
                         <div class="faq-a">
+
                             <div class="faq-a-inner" data-i18n="faq.2.answer">
-                                Loyiha qancha vaqtda tayyor bo'lishi uni qanchalik katta yoki kichikligiga qarab
-                                belgilanadi.
+                                Loyiha qancha vaqtda toyyor bolishi
+                                uni qanchalik katta yoki kichikligiga qarab belgilanadi.
                             </div>
+
                         </div>
+
                     </div>
 
+
+                    <!-- FAQ 3 -->
                     <div class="faq-item">
+
                         <button class="faq-q">
-                            <span data-i18n="faq.3.question">Tayyor saytga keyinchalik o'zgartirish kirita
-                                olasizmi?</span>
+
+                            <span data-i18n="faq.3.question">
+                                Tayyor saytga keyinchalik o'zgartirish kirita olasizmi?
+                            </span>
+
                             <span class="plus">+</span>
+
                         </button>
+
                         <div class="faq-a">
+
                             <div class="faq-a-inner" data-i18n="faq.3.answer">
-                                Ha, agar bizdan sayt yasatgan bo'lsangiz 30 kun davomida uni bepul o'zgartirishlar
-                                kiritib beramiz.
+                                Ha agar bizdan sayt yasatgan bolsangiz
+                                30 kun davomida uni bepul ozgartirishlar kiritib beramiz.
                             </div>
+
                         </div>
+
                     </div>
 
+
+                    <!-- FAQ 4 -->
                     <div class="faq-item">
+
                         <button class="faq-q">
-                            <span data-i18n="faq.4.question">Qanday to'lov usullarini qabul qilasiz?</span>
+
+                            <span data-i18n="faq.4.question">
+                                Qanday to'lov usullarini qabul qilasiz?
+                            </span>
+
                             <span class="plus">+</span>
+
                         </button>
+
                         <div class="faq-a">
+
                             <div class="faq-a-inner" data-i18n="faq.4.answer">
-                                Mijozlarni o'ylagan holda har qanday to'lov usullarini qabul qilamiz.
+                                Mijozlarni o'ylagan holda har qanday
+                                to'lov usullarini qabul qilamiz.
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
+
         <div class="wrap">
+
             <div class="sec-label reveal" data-i18n="contact.label">
-                11 — contact
+                10 — contact
             </div>
+
+
             <div class="contact-big reveal">
-                <span data-i18n="contact.title">Loyiha bormi?</span>
+
+                <span data-i18n="contact.title">
+                    Loyiha bormi?
+                </span>
+
                 <br>
+
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@isom1ddinov.uz&su=Portfolio%20orqali%20bog%27lanish"
                     id="scramble-mail" target="_blank" rel="noopener">
                     admin@isom1ddinov.uz
                 </a>
+
             </div>
 
+
             <div class="contact-layout">
+
                 <div class="contact-grid reveal">
+
                     <a class="contact-row" href="https://github.com/isom1ddinov" target="_blank" rel="noopener">
                         <span>github</span>
-                        <span class="arrow">@isom1ddinov →</span>
+                        <span class="arrow">
+                            @isom1ddinov →
+                        </span>
                     </a>
+
+
                     <a class="contact-row" href="https://instagram.com/isom1ddinov.uz" target="_blank" rel="noopener">
                         <span>instagram</span>
-                        <span class="arrow">@isom1ddinov.uz →</span>
+                        <span class="arrow">
+                            @isom1ddinov.uz →
+                        </span>
                     </a>
+
+
                     <a class="contact-row" href="https://t.me/isom1ddinov_uz" target="_blank" rel="noopener">
                         <span>telegram</span>
-                        <span class="arrow">@isom1ddinov_uz →</span>
+                        <span class="arrow">
+                            @isom1ddinov_uz →
+                        </span>
                     </a>
+
+
                     <a class="contact-row"
                         href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@isom1ddinov.uz&su=Portfolio%20orqali%20bog%27lanish"
                         target="_blank" rel="noopener">
+
                         <span>email</span>
-                        <span class="arrow">admin@isom1ddinov.uz →</span>
+
+                        <span class="arrow">
+                            admin@isom1ddinov.uz →
+                        </span>
                     </a>
+
+
                     <button class="contact-row" id="copyEmailBtn" type="button">
-                        <span data-i18n="contact.copy">email nusxalash</span>
-                        <span class="arrow">copy →</span>
+                        <span data-i18n="contact.copy">
+                            email nusxalash
+                        </span>
+
+                        <span class="arrow">
+                            copy →
+                        </span>
                     </button>
                 </div>
 
-                <form id="contactForm">
+
+
+
+                <form action="">
                     <div class="form-field">
-                        <label for="f-name" data-i18n="contact.name">Ism</label>
-                        <input id="f-name" type="text" placeholder="Ismingiz" required>
+
+                        <label for="f-name" data-i18n="contact.name">
+                            Ism
+                        </label>
+
+                        <input id="f-name" type="text" placeholder="Ismingiz"
+                            data-i18n-placeholder="contact.namePlaceholder" required>
+
+
                     </div>
+
+
                     <div class="form-field">
-                        <label for="f-email" data-i18n="contact.email">Email</label>
-                        <input id="f-email" type="email" placeholder="email@misol.com" required>
+
+                        <label for="f-email" data-i18n="contact.email">
+                            Email
+                        </label>
+
+                        <input id="f-email" type="email" placeholder="email@misol.com"
+                            data-i18n-placeholder="contact.emailPlaceholder" required>
+
                     </div>
+
+
                     <div class="form-field">
-                        <label for="f-msg" data-i18n="contact.message">Xabar</label>
-                        <textarea id="f-msg" rows="4" placeholder="Loyiha haqida qisqacha..." required></textarea>
+
+                        <label for="f-msg" data-i18n="contact.message">
+                            Xabar
+                        </label>
+
+                        <textarea id="f-msg" rows="4" placeholder="Loyiha haqida qisqacha..."
+                            data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
+
                     </div>
+
+
                     <button class="btn btn-primary form-submit" type="submit" data-i18n="contact.submit">
                         Yuborish
                     </button>
                 </form>
+
             </div>
+
         </div>
+
     </section>
 
     <footer>
         <div class="marquee">
             <div class="marquee-track">
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
                 <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
                     class="dot">●</span>
                 <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
@@ -3170,14 +3702,16 @@
                     <div class="footer-col">
                         <h4 data-i18n="footer.social">Ijtimoiy</h4>
                         <ul>
-                            <li><a href="https://github.com/isom1ddinov" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
                             <li><a href="https://instagram.com/isom1ddinov.uz" target="_blank"
-                                    rel="noopener">Instagram</a></li>
+                                    rel="noopener">Instagram</a>
+                            </li>
                             <li><a href="https://t.me/isom1ddinov_uz" target="_blank" rel="noopener">Telegram</a></li>
-                            <li><a href="mailto:admin@isom1ddinov.uz">Email</a></li>
+                            <li><a href="mailto:@xwisomiddinov@gmail.com">Email</a></li>
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="wrap foot-bottom">
@@ -3197,6 +3731,8 @@
         </div>
     </div>
 
+
+
     <script>
         /* =========================================================
         LOADER
@@ -3207,7 +3743,7 @@
         let p = 0;
         const loadTimer = setInterval(() => {
             p += Math.ceil(Math.random() * 14);
-            if (p >= 100) {p = 100; clearInterval(loadTimer); setTimeout(() => loader.classList.add('hide'), 250);}
+            if (p >= 100) { p = 100; clearInterval(loadTimer); setTimeout(() => loader.classList.add('hide'), 250); }
             loaderBar.style.width = p + '%';
             loadpct.textContent = p + '%';
         }, 100);
@@ -3245,10 +3781,10 @@
         const trailCanvas = document.getElementById('cursor-trail-canvas');
         const tctx = trailCanvas.getContext('2d');
         let trailPoints = [];
-        function resizeTrail() {trailCanvas.width = innerWidth; trailCanvas.height = innerHeight;}
+        function resizeTrail() { trailCanvas.width = innerWidth; trailCanvas.height = innerHeight; }
         window.addEventListener('resize', resizeTrail); resizeTrail();
         window.addEventListener('mousemove', e => {
-            trailPoints.push({x: e.clientX, y: e.clientY, life: 1});
+            trailPoints.push({ x: e.clientX, y: e.clientY, life: 1 });
             if (trailPoints.length > 18) trailPoints.shift();
         });
         function drawTrail() {
@@ -3264,7 +3800,7 @@
         drawTrail();
 
         /* =========================================================
-           THEME TOGGLE
+           THEME TOGGLE (session only, no localStorage)
         ========================================================= */
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
@@ -3275,49 +3811,396 @@
         /* =========================================================
            MOBILE NAV
         ========================================================= */
+
         document.addEventListener("DOMContentLoaded", () => {
+
             const navBurger = document.getElementById("navBurger");
             const navLinks = document.getElementById("navLinks");
+            const transition = document.getElementById("pageTransition");
 
-            if (!navBurger || !navLinks) return;
+            if (!navBurger || !navLinks || !transition) return;
+
+
+            /* =====================================================
+               PIXEL'LARNI YARATISH — kvadrat va zich (isladjan uslubida)
+               Ustun/qator soni ekran o'lchamiga qarab hisoblanadi, shunda
+               har bir katak doim KVADRAT bo'ladi (cho'zilgan to'rtburchak
+               emas) va ekran kattaligidan qat'iy nazar zich piksel to'ri
+               hosil bo'ladi.
+               ===================================================== */
+
+            const CELL_SIZE = 34; // taxminiy piksel o'lchami (px) — kichikroq son = ko'proq piksel
+
+            let columns = 12;
+            let rows = 7;
+            const pixels = [];
+
+            function buildPixelGrid() {
+
+                transition.innerHTML = "";
+                pixels.length = 0;
+
+                columns = Math.max(8, Math.round(window.innerWidth / CELL_SIZE));
+                rows = Math.max(8, Math.round(window.innerHeight / CELL_SIZE));
+
+                transition.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+                transition.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+
+                const centerX = (columns - 1) / 2;
+                const centerY = (rows - 1) / 2;
+
+                for (let i = 0; i < columns * rows; i++) {
+
+                    const pixel = document.createElement("div");
+
+                    pixel.className = "transition-pixel";
+
+                    const row = Math.floor(i / columns);
+                    const col = i % columns;
+
+                    const distance = Math.sqrt(
+                        Math.pow(col - centerX, 2) +
+                        Math.pow(row - centerY, 2)
+                    );
+
+                    pixel.dataset.distance = distance;
+
+                    /* har bir katakka tasodifiy davomiylik — checkerboard
+                       naqshi hech qachon aynan bir xil takrorlanmasligi uchun */
+                    pixel.style.animationDuration = (0.32 + Math.random() * 0.24).toFixed(2) + "s";
+
+                    transition.appendChild(pixel);
+
+                    pixels.push(pixel);
+                }
+            }
+
+            buildPixelGrid();
+
+            /* ekran o'lchami o'zgarsa (masalan, mobil aylantirilsa), to'rni
+               qayta hisoblab, kataklar kvadrat bo'lib qolishini ta'minlaydi */
+            let pixelGridResizeTimer;
+            window.addEventListener("resize", () => {
+                clearTimeout(pixelGridResizeTimer);
+                pixelGridResizeTimer = setTimeout(buildPixelGrid, 300);
+            });
+
+
+            /* =====================================================
+               PIXEL TRANSITION
+               ===================================================== */
+
+            function playTransition(callback) {
+
+                transition.classList.remove(
+                    "pixel-open",
+                    "pixel-close"
+                );
+
+                /* Tarqalish umumiy vaqti doim shu atrofda qolishi uchun,
+                   har bir katakning kechikishi umumiy kataklar soniga
+                   bo'linadi — kataklar qancha ko'p bo'lmasin, animatsiya
+                   bir xil tezlikda ketadi */
+                const MAX_SPREAD_MS = 260;
+                const perPixelDelay = pixels.length > 1
+                    ? MAX_SPREAD_MS / (pixels.length - 1)
+                    : 0;
+
+                /* Markazdan tashqariga */
+
+                const openOrder = [...pixels].sort(
+                    (a, b) =>
+                        Number(a.dataset.distance) -
+                        Number(b.dataset.distance)
+                );
+
+
+                openOrder.forEach((pixel, index) => {
+
+                    pixel.style.animationDelay =
+                        `${index * perPixelDelay}ms`;
+
+                });
+
+
+                transition.classList.add("pixel-open");
+
+
+                /* Ekran yopilgandan keyin menu o'zgaradi */
+
+                setTimeout(() => {
+
+                    if (callback) {
+                        callback();
+                    }
+
+
+                    /* Endi teskari tartib */
+
+                    const closeOrder = [...pixels].sort(
+                        (a, b) =>
+                            Number(b.dataset.distance) -
+                            Number(a.dataset.distance)
+                    );
+
+
+                    closeOrder.forEach((pixel, index) => {
+
+                        pixel.style.animationDelay =
+                            `${index * perPixelDelay}ms`;
+
+                    });
+
+
+                    transition.classList.remove("pixel-open");
+
+                    transition.classList.add("pixel-close");
+
+
+                    setTimeout(() => {
+
+                        transition.classList.remove(
+                            "pixel-close"
+                        );
+
+
+                        pixels.forEach(pixel => {
+                            pixel.style.animationDelay = "";
+                        });
+
+
+                    }, 520);
+
+                }, 560);
+
+            }
+
+
+            /* =====================================================
+               BURGER
+               ===================================================== */
 
             navBurger.addEventListener("click", () => {
-                navLinks.classList.toggle("open");
-                navBurger.classList.toggle("open");
-                document.body.classList.toggle("menu-open");
+
+                const menuOpen =
+                    navLinks.classList.contains("open");
+
+
+                playTransition(() => {
+
+                    if (menuOpen) {
+
+                        navLinks.classList.remove("open");
+
+                        navBurger.classList.remove("open");
+
+                        document.body.classList.remove(
+                            "menu-open"
+                        );
+
+                    } else {
+
+                        navLinks.classList.add("open");
+
+                        navBurger.classList.add("open");
+
+                        document.body.classList.add(
+                            "menu-open"
+                        );
+
+                    }
+
+                });
+
             });
 
-            document.querySelectorAll("[data-nav]").forEach(link => {
-                link.addEventListener("click", () => {
-                    navLinks.classList.remove("open");
-                    navBurger.classList.remove("open");
-                    document.body.classList.remove("menu-open");
+
+            /* =====================================================
+               MENU LINK
+               ===================================================== */
+
+            document
+                .querySelectorAll("[data-nav]")
+                .forEach(link => {
+
+                    link.addEventListener("click", e => {
+
+                        if (window.innerWidth > 760) {
+                            return;
+                        }
+
+
+                        const target =
+                            link.getAttribute("href");
+
+                        const section =
+                            document.querySelector(target);
+
+                        if (!section) return;
+
+
+                        e.preventDefault();
+
+
+                        playTransition(() => {
+
+                            navLinks.classList.remove("open");
+
+                            navBurger.classList.remove("open");
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+
+
+                            setTimeout(() => {
+
+                                section.scrollIntoView({
+                                    behavior: "instant",
+                                    block: "start"
+                                });
+
+                            }, 20);
+
+                        });
+
+                    });
+
                 });
+
+
+            /* =====================================================
+               ESC
+               ===================================================== */
+
+            document.addEventListener("keydown", e => {
+
+                if (
+                    e.key === "Escape" &&
+                    navLinks.classList.contains("open")
+                ) {
+
+                    navBurger.click();
+
+                }
+
             });
+
         });
 
         /* =========================================================
-            HERO TYPED NAME
+            HERO TYPED NAME + ROLE CYCLE
         ========================================================= */
+
         const target = "isom1ddinov";
         const nameEl = document.getElementById("typed-name");
 
         if (nameEl) {
+
             target.split("").forEach((ch, idx) => {
+
                 const s = document.createElement("span");
+
                 s.className = "letter";
                 s.textContent = ch;
                 s.style.animationDelay = (idx * 0.06) + "s";
+
                 nameEl.appendChild(s);
+
             });
+
         }
+
+        let roles = [];
+        let roleIdx = 0;
+        let charIdx = 0;
+        let deleting = false;
+        let roleTimer = null;
+
+        const roleEl = document.getElementById("roleCycle");
+
+        function updateRoles() {
+
+            roles = [
+                language.translations["role.1"],
+                language.translations["role.2"],
+                language.translations["role.3"],
+                language.translations["role.4"]
+            ].filter(Boolean);
+
+        }
+
+        function startRoleAnimation() {
+
+            // Eski animatsiyani to'xtatish
+            clearTimeout(roleTimer);
+
+            // Hammasini boshidan boshlash
+            roleIdx = 0;
+            charIdx = 0;
+            deleting = false;
+
+            if (!roles.length || !roleEl) return;
+
+            roleEl.textContent = "";
+
+            roleTimer = setTimeout(typeRole, 900);
+        }
+
+        function typeRole() {
+
+            if (!roles.length || !roles[roleIdx]) {
+                return;
+            }
+
+            const full = roles[roleIdx];
+
+            if (!deleting) {
+
+                charIdx++;
+
+                roleEl.textContent = full.slice(0, charIdx);
+
+                if (charIdx >= full.length) {
+
+                    deleting = true;
+
+                    roleTimer = setTimeout(typeRole, 1400);
+
+                    return;
+                }
+
+            } else {
+
+                charIdx--;
+
+                roleEl.textContent = full.slice(0, charIdx);
+
+                if (charIdx <= 0) {
+
+                    charIdx = 0;
+                    deleting = false;
+
+                    roleIdx = (roleIdx + 1) % roles.length;
+                }
+            }
+
+            roleTimer = setTimeout(
+                typeRole,
+                deleting ? 35 : 65
+            );
+        }
+
+
+
+
 
         /* =========================================================
            SCROLL REVEAL
         ========================================================= */
         const io = new IntersectionObserver((entries) => {
-            entries.forEach(en => {if (en.isIntersecting) {en.target.classList.add('show');} });
-        }, {threshold: 0.15});
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('show'); } });
+        }, { threshold: 0.15 });
         document.querySelectorAll('.reveal, .reveal-scale').forEach(elm => io.observe(elm));
 
         /* =========================================================
@@ -3329,11 +4212,11 @@
                 if (en.isIntersecting) {
                     const elx = en.target; const tgt = +elx.dataset.target; let cur = 0;
                     const step = Math.max(1, Math.ceil(tgt / 40));
-                    const t = setInterval(() => {cur += step; if (cur >= tgt) {cur = tgt; clearInterval(t);} elx.textContent = cur;}, 30);
+                    const t = setInterval(() => { cur += step; if (cur >= tgt) { cur = tgt; clearInterval(t); } elx.textContent = cur; }, 30);
                     cio.unobserve(elx);
                 }
             });
-        }, {threshold: 0.5});
+        }, { threshold: 0.5 });
         counters.forEach(c => cio.observe(c));
 
         /* =========================================================
@@ -3347,20 +4230,20 @@
                     sio.unobserve(en.target);
                 }
             });
-        }, {threshold: 0.4});
+        }, { threshold: 0.4 });
         skillBars.forEach(b => sio.observe(b));
 
         /* =========================================================
-           PARTICLE CANVAS
+           PARTICLE CANVAS (hero background)
         ========================================================= */
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let w, h, particles = [];
-        function resize() {w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight;}
+        function resize() { w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight; }
         window.addEventListener('resize', resize);
         function initParticles() {
             resize();
-            particles = Array.from({length: 400}, () => ({
+            particles = Array.from({ length: 400 }, () => ({
                 x: Math.random() * w, y: Math.random() * h,
                 vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, r: Math.random() * 1.5 + 0.5
             }));
@@ -3377,6 +4260,27 @@
             requestAnimationFrame(animateParticles);
         }
         initParticles(); animateParticles();
+
+        /* mouse parallax on hero content */
+        document.querySelector('.hero').addEventListener('mousemove', (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width - 0.5;
+            const relY = (e.clientY - rect.top) / rect.height - 0.5;
+            document.querySelector('.hero-inner').style.transform = `translate(${relX * 10}px, ${relY * 10}px)`;
+        });
+
+        /* =========================================================
+           SERVICE CARD TILT
+        ========================================================= */
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const rx = ((e.clientY - r.top) / r.height - 0.5) * -8;
+                const ry = ((e.clientX - r.left) / r.width - 0.5) * 8;
+                card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+            });
+            card.addEventListener('mouseleave', () => card.style.transform = '');
+        });
 
         /* =========================================================
            PROJECT FILTER
@@ -3403,7 +4307,7 @@
         const modalDesc = document.getElementById('modalDesc');
         const modalTags = document.getElementById('modalTags');
         document.getElementById('modalClose').addEventListener('click', () => modalOverlay.classList.remove('open'));
-        modalOverlay.addEventListener('click', (e) => {if (e.target === modalOverlay) modalOverlay.classList.remove('open');});
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) modalOverlay.classList.remove('open'); });
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', () => {
                 modalTitle.textContent = card.dataset.title;
@@ -3431,7 +4335,7 @@
             track.style.transform = `translateX(-${i * 100}%)`;
             dotsWrap.querySelectorAll('button').forEach((d, idx) => d.classList.toggle('active', idx === i));
         }
-        setInterval(() => {goToSlide((activeSlide + 1) % slides.length);}, 5000);
+        setInterval(() => { goToSlide((activeSlide + 1) % slides.length); }, 5000);
 
         /* =========================================================
            FAQ ACCORDION
@@ -3444,7 +4348,7 @@
                 document.querySelectorAll('.faq-item').forEach(i => {
                     i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null;
                 });
-                if (!isOpen) {item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px';}
+                if (!isOpen) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
             });
         });
 
@@ -3452,22 +4356,71 @@
            TOAST + COPY EMAIL
         ========================================================= */
         const toast = document.getElementById("toast");
+
         function showToast(msg) {
             toast.textContent = msg;
             toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2400);
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2400);
         }
 
         const copyEmailBtn = document.getElementById("copyEmailBtn");
+
         if (copyEmailBtn) {
             copyEmailBtn.addEventListener("click", async () => {
+
                 try {
                     await navigator.clipboard.writeText("admin@isom1ddinov.uz");
                     showToast("Email nusxalandi ✓");
+
                 } catch (error) {
+
+                    const textarea = document.createElement("textarea");
+                    textarea.value = "admin@isom1ddinov.uz";
+
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand("copy");
+                    textarea.remove();
+
                     showToast("Email nusxalandi ✓");
                 }
+
             });
+        }
+
+        /* =========================================================
+           CONTACT FORM (static demo, no backend)
+        ========================================================= */
+        const contactForm = document.getElementById("contactForm");
+
+        if (contactForm) {
+
+            contactForm.addEventListener("submit", (e) => {
+
+                e.preventDefault();
+
+                const name = document.getElementById("f-name").value;
+                const email = document.getElementById("f-email").value;
+                const message = document.getElementById("f-msg").value;
+
+                const subject = encodeURIComponent(
+                    "Portfolio orqali bog'lanish"
+                );
+
+                const body = encodeURIComponent(
+                    `Ism: ${name}\nEmail: ${email}\n\nXabar:\n${message}`
+                );
+
+                window.open(
+                    `https://mail.google.com/mail/?view=cm&fs=1&to=admin@isom1ddinov.uz&su=${subject}&body=${body}`,
+                    "_blank"
+                );
+
+            });
+
         }
 
         /* =========================================================
@@ -3477,10 +4430,104 @@
         window.addEventListener('scroll', () => {
             backToTop.classList.toggle('show', window.scrollY > 600);
         });
-        backToTop.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
-    </script>
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+        /* =========================================================
+           TEXT SCRAMBLE ON HOVER (email)
+        ========================================================= */
+        /* =========================================================
+   EMAIL TEXT SCRAMBLE ON HOVER
+========================================================= */
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const scrambleEl = document.getElementById("scramble-mail");
+
+            if (!scrambleEl) return;
+
+            const original = "admin@isom1ddinov.uz";
+
+            const chars =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            let scrambleInterval = null;
+            let delayTimeout = null;
+
+
+            function scrambleEmail() {
+
+                clearInterval(scrambleInterval);
+                clearTimeout(delayTimeout);
+
+                let iteration = 0;
+
+                scrambleInterval = setInterval(() => {
+
+                    scrambleEl.textContent = original
+                        .split("")
+                        .map((char, index) => {
+
+                            // @ va . o'zgarmaydi
+                            if (char === "@" || char === ".") {
+                                return char;
+                            }
+
+                            // O'tilgan harflar asl holatiga qaytadi
+                            if (index < iteration) {
+                                return original[index];
+                            }
+
+                            return chars[
+                                Math.floor(Math.random() * chars.length)
+                            ];
+
+                        })
+                        .join("");
+
+                    iteration += 0.7;
+
+
+                    // Animatsiya tugadi
+                    if (iteration >= original.length) {
+
+                        clearInterval(scrambleInterval);
+
+                        scrambleEl.textContent = original;
+
+                        // 2 sekund kutib yana boshlaydi
+                        delayTimeout = setTimeout(() => {
+                            scrambleEmail();
+                        }, 2000);
+
+                    }
+
+                }, 35);
+            }
+
+
+            // Birinchi animatsiyani boshlash
+            delayTimeout = setTimeout(() => {
+                scrambleEmail();
+            }, 2000);
+
+        });
+        /* =========================================================
+           EASTER EGG — KONAMI CODE
+        ========================================================= */
+        const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIdx = 0;
+        window.addEventListener('keydown', (e) => {
+            if (e.key === konami[konamiIdx]) {
+                konamiIdx++;
+                if (konamiIdx === konami.length) {
+                    showToast('🎉 Yashirin kod topildi! Salom, qiziquvchan inson.');
+                    konamiIdx = 0;
+                }
+            } else { konamiIdx = 0; }
+        });
+    </script>
     <div class="page-transition" id="pageTransition"></div>
+    <script src="server.js"></script>
     <script src="app.js"></script>
     <script src="JS/config.js"></script>
     <script src="JS/language.js"></script>
