@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 User-agent: *
 Allow: /
 
-=======
-User-agent: *
-Allow: /
-
->>>>>>> 004ebfc1446d548c92ffe0df7dd7ff34da370572
 Sitemap: https://isom1ddinov.uz/sitemap.xml

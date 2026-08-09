@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 
@@ -4534,4 +4535,4542 @@
     <script type="module" src="script.js"></script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozodbek Isomiddinov | Web Developer</title>
+    <meta name="description"
+        content="Ozodbek Isomiddinovning portfolio sayti. HTML, CSS, JavaScript va zamonaviy veb-loyihalar.">
+    <link rel="canonical" href="https://isom1ddinov.uz/">
+    <link rel="icon" type="image/jpg" href="img/IMG_3496.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* =========================================================
+   DESIGN TOKENS
+========================================================= */
+        :root {
+            --bg: #0a0a0a;
+            --bg-alt: #0e0e0e;
+            --surface: #131313;
+            --surface-2: #181818;
+            --text: #f0f0ec;
+            --text-dim: #c9c9c4;
+            --muted: #7a7a7a;
+            --muted-2: #4d4d4d;
+            --accent: #39ff7f;
+            --accent-dim: rgba(57, 255, 127, 0.14);
+            --border: #212121;
+            --border-2: #2a2a2a;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --ease: cubic-bezier(.22, .61, .36, 1);
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        :root.light {
+            --bg: #f5f5f2;
+            --bg-alt: #efefec;
+            --surface: #ffffff;
+            --surface-2: #f0f0ed;
+            --text: #0a0a0a;
+            --text-dim: #333330;
+            --muted: #6b6b6b;
+            --muted-2: #9a9a9a;
+            --border: #e2e2de;
+            --border-2: #d5d5d0;
+        }
+
+        /* =========================================================
+   RESET
+========================================================= */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            cursor: none;
+            transition: background .4s var(--ease), color .4s var(--ease);
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            font-family: inherit;
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .mono {
+            font-family: var(--font-mono);
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-2);
+            border-radius: 10px;
+            border: 2px solid var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        .wrap-narrow {
+            max-width: 760px;
+            max-width: 1040px;
+        }
+
+        /* =========================================================
+   SCROLL PROGRESS BAR
+========================================================= */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 10001;
+            transition: width .1s linear;
+        }
+
+        /* =========================================================
+   CUSTOM CURSOR + TRAIL
+========================================================= */
+        .cursor-dot,
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+        }
+
+        .cursor-ring {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--accent);
+            transition: width .25s, height .25s, border-color .25s, background .25s;
+        }
+
+        .cursor-ring.hover {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-dim);
+        }
+
+        .cursor-ring.text-hover {
+            width: 90px;
+            height: 90px;
+        }
+
+        #cursor-trail-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        @media (max-width:4900px) {
+            .about p {
+                margin-bottom: 65px;
+            }
+        }
+
+        @media (max-width:900px) {
+            .about p {
+                margin-bottom: 45px;
+            }
+
+        }
+
+        @media (max-width:900px),
+        (hover:none) {
+            body {
+                cursor: auto;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 50px 18px !important;
+            }
+
+            .foot-bottom {
+                padding: 20px 18px !important;
+            }
+
+            .cursor-dot,
+            .cursor-ring,
+            #cursor-trail-canvas {
+                display: none;
+            }
+        }
+
+        /* =========================================================
+   LOADER
+========================================================= */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        #loader .loader-logo {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -1px;
+        }
+
+        #loader .loader-logo .dot {
+            color: var(--accent);
+        }
+
+        #loader .bar-track {
+            width: 220px;
+            height: 2px;
+            background: var(--border);
+            overflow: hidden;
+        }
+
+        #loader .bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            transition: width .1s linear;
+        }
+
+        #loader span.pct {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        #loader.hide {
+            animation: fadeOut .7s var(--ease) forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* =========================================================
+   NAV
+========================================================= */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: color-mix(in srgb, var(--bg) 20%, transparent);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--muted);
+            align-items: center;
+            width: 500px;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width .25s var(--ease);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+        }
+
+        .theme-toggle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            z-index: 200;
+            position: relative;
+        }
+
+        .nav-burger span {
+            height: 1px;
+            background: var(--text);
+            width: 100%;
+            transition: .25s var(--ease);
+            transform-origin: center;
+        }
+
+        .nav-burger.open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-burger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-burger.open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        @media (max-width:760px) {
+            nav .wrap {
+                padding: 0 18px;
+            }
+            
+
+            .form-submit {
+                width: 100%;
+            }
+
+            .about p {
+                margin-bottom: 35px;
+            }
+
+            .nav-logo {
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: calc(100vh - 64px);
+                background: var(--bg);
+                z-index: 150;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-size: 19px;
+                transform: translateY(-12px);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity .3s var(--ease), transform .3s var(--ease);
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-burger {
+                display: flex;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+
+        /* =========================================
+   MOBILE MENU
+========================================= */
+
+        @media (max-width:760px) {
+
+            .nav-links {
+                z-index: 150;
+            }
+
+        }
+
+        /* =========================================================
+   HERO
+========================================================= */
+        .hero {
+            position: relative;
+            min-height: 94vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #particles {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: .55;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1040px;
+        }
+
+        .eyebrow-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(57, 255, 127, .5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(57, 255, 127, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(57, 255, 127, 0);
+            }
+        }
+
+        .prompt-line {
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: clamp(40px, 9vw, 104px);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px) rotate(4deg);
+            animation: rise .6s var(--ease) forwards;
+        }
+
+        @keyframes rise {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(0);
+            }
+        }
+
+        .role-cycle {
+            font-family: var(--font-mono);
+            font-size: clamp(16px, 2.4vw, 22px);
+            color: var(--muted);
+            margin-top: 10px;
+            min-height: 1.4em;
+        }
+
+        .role-cycle .rc-accent {
+            color: var(--accent);
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 10px;
+            background: var(--accent);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero p.desc {
+            color: var(--muted);
+            font-size: 18px;
+            max-width: 540px;
+            margin-top: 24px;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 32px;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            transition: .2s;
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            padding: 14px 24px;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .25s var(--ease);
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #08130d;
+            font-weight: 700;
+            width: 100%;
+            align-items: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -10px rgba(57, 255, 127, .5);
+        }
+
+        .btn-ghost {
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 32px;
+            left: 24px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-hint .line {
+            width: 1px;
+            height: 24px;
+            background: var(--muted);
+            animation: scrollLine 1.6s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: .3;
+            }
+
+            50% {
+                transform: scaleY(1.4);
+                opacity: 1;
+            }
+        }
+
+        .hero-coords {
+            position: absolute;
+            bottom: 32px;
+            right: 24px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            text-align: right;
+        }
+
+        /* =========================================================
+   MARQUEE
+========================================================= */
+        .marquee {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            padding: 16px 0;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: scroll 24s linear infinite;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .marquee:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        .marquee-track span {
+            margin: 0 20px;
+        }
+
+        .marquee-track span.dot {
+            color: var(--accent);
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* =========================================================
+   REVEAL
+========================================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .7s var(--ease), transform .7s var(--ease);
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(.94);
+            transition: opacity .6s var(--ease), transform .6s var(--ease);
+        }
+
+        .reveal-scale.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .stagger .reveal:nth-child(1) {
+            transition-delay: 0s;
+        }
+
+        .stagger .reveal:nth-child(2) {
+            transition-delay: .08s;
+        }
+
+        .stagger .reveal:nth-child(3) {
+            transition-delay: .16s;
+        }
+
+        .stagger .reveal:nth-child(4) {
+            transition-delay: .24s;
+        }
+
+        .stagger .reveal:nth-child(5) {
+            transition-delay: .32s;
+        }
+
+        .stagger .reveal:nth-child(6) {
+            transition-delay: .4s;
+        }
+
+        section {
+            padding: 120px 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .sec-label {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sec-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .sec-title {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: clamp(28px, 4vw, 40px);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .sec-sub {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 560px;
+            margin-bottom: 48px;
+        }
+
+        /* =========================================================
+   ABOUT
+========================================================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about p {
+            color: var(--text-dim);
+            font-size: 16px;
+        }
+
+        .about strong {
+            color: var(--text);
+        }
+
+        .about-photo {
+            aspect-ratio: 4/5;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            background: linear-gradient(155deg, var(--surface), var(--bg-alt));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            color: var(--muted-2);
+            font-size: 13px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+        .about-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: 16px 16px;
+            opacity: .5;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 44px;
+        }
+
+        .stat-num {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 40px;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 12px;
+            font-family: var(--font-mono);
+            margin-top: 4px;
+        }
+
+        @media (max-width:760px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-photo {
+                aspect-ratio: 16/9;
+                order: -1;
+            }
+            #reviews-section {
+                display:  block;
+            }
+            .auth-card {
+            margin-right: 0 !important;
+            width: 100% !important;
+            margin-bottom: 10px !important;
+            height: 315px !important;
+            }
+            .user-card,
+            .comment-form-card {
+                margin-right: 0 !important;
+            width: 100% !important;
+            margin-bottom: 10px !important;
+            }
+        }
+
+        /* =========================================================
+   SERVICES
+========================================================= */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            transition: transform .3s var(--ease), border-color .3s var(--ease);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+        }
+
+        .service-card .icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .service-card .idx {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted-2);
+        }
+
+        /* =========================================================
+   SKILLS
+========================================================= */
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        .skill-row {
+            display: grid;
+            grid-template-columns: 160px 1fr 60px;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .skill-name {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .skill-bar-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 1.2s var(--ease);
+            border-radius: 10px;
+        }
+
+        .skill-pct {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--muted);
+            text-align: right;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 14px;
+            margin-top: 50px;
+        }
+
+        .tool-chip {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        .tool-chip:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            color: var(--accent);
+        }
+
+        /* =========================================================
+   PROCESS (real ordered sequence -> numbering justified)
+========================================================= */
+        .process-list {
+            counter-reset: step;
+        }
+
+        .process-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 24px;
+            padding: 34px 0;
+            border-top: 1px solid var(--border);
+            position: relative;
+            border-bottom: #252525 1px solid;
+        }
+
+        .process-item:first-child {
+            border-top: none;
+        }
+
+        .process-num {
+            font-family: var(--font-mono);
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--border-2);
+            transition: color .3s;
+        }
+
+        .process-item:hover .process-num {
+            color: var(--accent);
+        }
+
+        .process-item h3 {
+            font-family: var(--font-mono);
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .process-item p {
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 520px;
+        }
+
+        /* =========================================================
+   EXPERIENCE TIMELINE
+========================================================= */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tl-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .tl-item:first-child {
+            border-top: none;
+        }
+
+        .tl-num {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .tl-role {
+            font-weight: 700;
+            font-size: 17px;
+        }
+
+        .tl-meta {
+            color: var(--muted);
+            font-size: 13px;
+            font-family: var(--font-mono);
+            margin-top: 4px;
+        }
+
+        .tl-desc {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 10px;
+            max-width: 520px;
+        }
+
+        /* =========================================================
+   PROJECTS
+========================================================= */
+        .project-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--muted);
+            transition: .2s;
+        }
+
+        .filter-btn:hover {
+            color: var(--text);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: #08130d;
+            border-color: var(--accent);
+            font-weight: 700;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: none;
+            transition: transform .3s var(--ease), border-color .3s var(--ease);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+        }
+
+        .project-thumb {
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--surface-2), var(--bg-alt));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            color: var(--muted-2);
+            font-size: 13px;
+            overflow: hidden;
+        }
+
+        .project-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: .3;
+        }
+
+        .project-body {
+            padding: 22px;
+        }
+
+        .project-body h3 {
+            font-family: var(--font-mono);
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .project-body p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .project-tags span {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+
+        /* MODAL */
+        #modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            backdrop-filter: blur(4px);
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s var(--ease);
+        }
+
+        #modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border-2);
+            border-radius: var(--radius-lg);
+            max-width: 560px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            transform: translateY(20px) scale(.97);
+            transition: transform .3s var(--ease);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #modal-overlay.open .modal-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: var(--font-mono);
+            font-size: 20px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+        }
+
+        .modal-close:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .modal-box h3 {
+            font-family: var(--font-mono);
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .modal-box p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .modal-tags span {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 10px;
+            border-radius: 10px;
+        }
+
+        /* =========================================================
+   TESTIMONIALS
+========================================================= */
+        .testimonial-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform .5s var(--ease);
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+        }
+
+        .testimonial-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 44px;
+            text-align: center;
+        }
+
+        .testimonial-card p {
+            font-size: 19px;
+            color: var(--text-dim);
+            max-width: 560px;
+            margin: 0 auto 24px;
+            font-style: italic;
+        }
+
+        .testimonial-name {
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+
+        .testimonial-role {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .carousel-dots button {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-2);
+            transition: .2s;
+        }
+
+        .carousel-dots button.active {
+            background: var(--accent);
+            width: 22px;
+            border-radius: 10px;
+        }
+
+        /* =========================================================
+   AWARDS / FUN FACTS
+========================================================= */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .fact-cell {
+            background: var(--bg);
+            padding: 32px 24px;
+        }
+
+        .fact-cell .n {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 32px;
+            color: var(--accent);
+        }
+
+        .fact-cell .l {
+            color: var(--muted);
+            font-size: 12px;
+            font-family: var(--font-mono);
+            margin-top: 6px;
+        }
+
+        /* =========================================================
+   BLOG / ARTICLES
+========================================================= */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .blog-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 26px;
+            transition: .25s;
+        }
+
+        .blog-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .blog-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .blog-card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .blog-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .blog-read {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 16px;
+            display: inline-block;
+        }
+
+        /* =========================================================
+   FAQ ACCORDION
+========================================================= */
+        .faq-list {
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-q {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .faq-q .plus {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 20px;
+            transition: transform .3s;
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+
+        .faq-item.open .plus {
+            transform: rotate(45deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s var(--ease);
+        }
+
+        .faq-a-inner {
+            padding-bottom: 24px;
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 640px;
+        }
+
+        /* =========================================================
+   CONTACT
+========================================================= */
+        .contact-big {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: clamp(32px, 7vw, 68px);
+            line-height: 1.1;
+        }
+
+        .contact-big a {
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 50px;
+            align-items: start;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 22px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .contact-row:hover {
+            border-color: var(--accent);
+            transform: translateX(6px);
+        }
+
+        .contact-row .arrow {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .form-field input,
+        .form-field textarea {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            cursor: auto;
+            transition: border-color .2s;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-submit {
+            margin-top: 6px;
+        }
+
+        /* toast */
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--text);
+            color: var(--bg);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            padding: 14px 22px;
+            border-radius: var(--radius-sm);
+            z-index: 6000;
+            opacity: 0;
+            transition: .3s var(--ease);
+            pointer-events: none;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* =========================================================
+   FOOTER
+========================================================= */
+        footer {
+            padding: 5;
+        }
+
+        footer .marquee {
+            border-bottom: none;
+        }
+
+        .footer-main {
+            padding: 70px 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-main>div {
+            min-width: 0;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .footer-col a {
+            color: var(--text-dim);
+            font-size: 14px;
+            transition: .2s;
+            overflow-wrap: anywhere;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-brand {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 22px;
+            margin-bottom: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .footer-brand .dot {
+            color: var(--accent);
+        }
+
+        .footer-desc {
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 280px;
+            overflow-wrap: anywhere;
+        }
+
+        .foot-bottom {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px 0;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        @media (max-width:760px) {
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+            .user-card {
+            width: 100% !important;
+            margin-bottom: 15px;
+            margin-left: 0px !important;
+            }
+            .div {
+                
+                margin-right: 0;
+            }
+            .comment-form-card {
+                width: 100% !important;
+                margin-bottom: 15px !important;
+                margin-left: 0px !important;
+            }
+
+            .footer-main>div {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .contact-layout {
+                display: block;
+            }
+
+            .footer-brand {
+                margin: 0;
+            }
+
+            .footer-col {
+                width: 200px;
+            }
+
+            .cols {
+                display: flex;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                display: block;
+            }
+
+            .cols {
+                width: 100%;
+                text-align: center;
+            }
+
+            .foot-bottom {
+                padding: 20px 18px;
+            }
+
+            .footer-desc {
+                max-width: none;
+            }
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 400;
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s var(--ease);
+            font-family: var(--font-mono);
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #back-to-top:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width:600px) {
+            section {
+                padding: 64px 0;
+            }
+
+            .about p {
+                margin-bottom: 30px;
+            }
+
+            .about-grid,
+            .contact-layout {
+                gap: 36px;
+            }
+
+            .hero-coords {
+                display: none;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-cta .btn {
+                justify-content: center;
+            }
+
+            .skill-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .skill-pct {
+                text-align: left;
+            }
+
+            .process-item {
+                grid-template-columns: 44px 1fr;
+                gap: 14px;
+                padding: 24px 0;
+            }
+
+            .process-num {
+                font-size: 24px;
+            }
+
+            .tl-item {
+                grid-template-columns: 36px 1fr;
+                gap: 14px;
+                padding: 22px 0;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 50px 20px;
+            }
+
+            .contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                padding: 16px 18px;
+            }
+
+            .contact-row .arrow {
+                align-self: flex-end;
+            }
+
+            .foot-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .modal-box {
+                padding: 28px;
+            }
+
+            .testimonial-card {
+                padding: 28px 20px;
+            }
+
+            .facts-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width:420px) {
+            .foot-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .about p {
+                margin-bottom: 20px;
+            }
+
+            .contact-big {
+                font-size: clamp(25px, 7vw, 68px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cursor-blink {
+                animation: none;
+                opacity: 1;
+            }
+
+            .marquee-track {
+                animation: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .reveal,
+            .reveal-scale {
+                transition: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toast" class="toast"></div>
+
+    <div id="scroll-progress"></div>
+
+    <div id="loader">
+        <div class="loader-logo">isom1ddinov<span class="dot">.</span>uz</div>
+        <div class="bar-track">
+            <div class="bar-fill" id="loaderBar"></div>
+        </div>
+        <span class="pct" id="loadpct">0%</span>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <canvas id="cursor-trail-canvas"></canvas>
+
+    <nav>
+        <div class="wrap">
+
+            <!-- LOGO -->
+            <div class="nav-logo">
+                isom1ddinov<span style="color:var(--accent)">.</span>uz
+            </div>
+
+            <!-- DESKTOP MENU -->
+            <div class="nav-links" id="navLinks">
+                <a href="#about" data-nav>about</a>
+                <a href="#services" data-nav>services</a>
+                <a href="#skills" data-nav>skills</a>
+                <a href="#process" data-nav>process</a>
+                <a href="#projects" data-nav>projects</a>
+                <a href="#comments" data-nav>comments</a>
+                <a href="#faq" data-nav>faq</a>
+                <a href="#contact" data-nav>contact</a>
+
+            </div>
+
+            <!-- LANGUAGE -->
+            <div class="language-dropdown">
+
+                <button class="language-btn" id="languageBtn" type="button" aria-label="Tilni tanlash">
+                    <i class="fa-solid fa-globe"></i>
+
+                    <span id="currentLanguage">UZ</span>
+
+                    <i class="fa-solid fa-chevron-down arrow"></i>
+                </button>
+
+                <div class="language-menu" id="languageMenu">
+                    <button class="language-item active" data-lang="uz" type="button">
+                        UZ
+                    </button>
+
+                    <button class="language-item" data-lang="ru" type="button">
+                        RU
+                    </button>
+
+                    <button class="language-item" data-lang="en" type="button">
+                        EN
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- RIGHT CONTROLS -->
+            <div style="display:flex; align-items:center; gap:14px;">
+                <button class="theme-toggle" id="themeToggle" title="Mavzuni almashtirish">◐</button>
+                <div class="nav-burger" id="navBurger"><span></span><span></span><span></span></div>
+            </div>
+
+        </div>
+
+        </div>
+
+    </nav>
+
+    <section class="hero">
+        <canvas id="particles"></canvas>
+        <div class="wrap">
+            <div class="hero-inner">
+                <div class="eyebrow-row">
+                    <div class="status-dot"></div>
+                    <div class="prompt-line" data-i18n="hero.status">
+                        yangi loyihalarga ochiqman
+                    </div>
+                </div>
+                <h1 id="typed-name"></h1>
+                <div class="role-cycle mono">&gt; <span id="roleCycle" class="rc-accent"></span><span
+                        class="cursor-blink">&nbsp;</span></div>
+                <p class="desc" data-i18n="hero.description">Frontend dasturchi — 3 yillik tajriba. HTML, CSS,
+                    JavaScript va Python bilan g'oyalarni
+                    ishlaydigan, tez va sinchkovlik bilan qurilgan interfeyslarga aylantiraman.</p>
+                <div class="hero-tags">
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
+                        class="tag">Python</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.projects">
+                        Loyihalarni ko'rish
+                    </a>
+                    <a href="#contact" class="btn btn-ghost" data-i18n="hero.contact">
+                        Bog'lanish
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <div class="line"></div>SCROLL
+        </div>
+        <div class="hero-coords mono">41.2995° N<br>69.2401° E</div>
+    </section>
+
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+            <span>FRONTEND DEVELOPER</span><span class="dot">●</span><span>HTML / CSS / JS</span><span
+                class="dot">●</span><span>PYTHON</span><span class="dot">●</span><span>@ISOM1DDINOV</span><span
+                class="dot">●</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="about.label">
+                01 — about
+            </div>
+
+            <div class="sec-title reveal" data-i18n="about.title">
+                Kim bu isom1ddinov?
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about reveal">
+
+                    <p data-i18n="about.text1">
+                        <strong>isom1ddinov</strong> — frontend yo'nalishida ishlaydigan dasturchi.
+                        So'nggi 3 yil davomida veb-interfeyslar qurish, statik saytlardan tortib
+                        interaktiv veb-ilovalargacha bo'lgan loyihalar ustida ishlaganman.
+                    </p>
+
+                    <p data-i18n="about.text2">
+                        Kodni aniq, o'qilishi oson va uzoq muddat qo'llab-quvvatlanadigan qilib yozishga
+                        harakat qilaman. Frontendda vizual detallarga, Python orqali esa avtomatlashtirish
+                        va muammolarni yechishga qiziqaman.
+                    </p>
+
+                    <p data-i18n="about.text3">
+                        Har bir loyihada bitta savolni beraman:
+                        <strong>bu interfeys odamning vaqtini tejaydimi?</strong>
+                        Javob "ha" bo'lmaguncha ishlashda davom etaman.
+                    </p>
+
+                    <div class="stats-row">
+
+                        <div>
+                            <div class="stat-num" data-target="3">0</div>
+
+                            <div class="stat-label" data-i18n="about.stat1">
+                                YIL TAJRIBA
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="stat-num" data-target="4">0</div>
+
+                            <div class="stat-label" data-i18n="about.stat2">
+                                ASOSIY TEXNOLOGIYA
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="stat-num" data-target="100">0</div>
+
+                            <div class="stat-label" data-i18n="about.stat3">
+                                % MOSLASHUVCHAN KOD
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="about-photo reveal-scale mono">
+                    <img src="img/5.jpg" alt="isom1ddinov">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="services.label">
+                02 — services
+            </div>
+
+            <div class="sec-title reveal" data-i18n="services.title">
+                Nima bilan yordam bera olaman
+            </div>
+
+            <p class="sec-sub reveal" data-i18n="services.subtitle">
+                Kichik landing sahifalardan tortib to'liq interaktiv veb-ilovalargacha.
+            </p>
+
+            <div class="services-grid stagger">
+
+                <div class="service-card reveal">
+                    <div class="idx mono">01</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="4" width="18" height="16" rx="2" />
+                        <path d="M3 9h18" />
+                    </svg>
+
+                    <h3 data-i18n="services.card1.title">
+                        Veb-sayt qurish
+                    </h3>
+
+                    <p data-i18n="services.card1.text">
+                        Semantik HTML va toza CSS asosida tezkor, responsive saytlar.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="idx mono">02</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 4l16 16M20 4L4 20" />
+                    </svg>
+
+                    <h3 data-i18n="services.card2.title">
+                        Interaktiv UI
+                    </h3>
+
+                    <p data-i18n="services.card2.text">
+                        JavaScript orqali animatsiya, scroll-effektlar va foydalanuvchi tajribasi.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="idx mono">03</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
+                    </svg>
+
+                    <h3 data-i18n="services.card3.title">
+                        Python avtomatlashtirish
+                    </h3>
+
+                    <p data-i18n="services.card3.text">
+                        Takrorlanuvchi vazifalarni skriptlar bilan avtomatlashtirish.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="idx mono">04</div>
+
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 3" />
+                    </svg>
+
+                    <h3 data-i18n="services.card4.title">
+                        Performance
+                    </h3>
+
+                    <p data-i18n="services.card4.text">
+                        Tezkor yuklanadigan, optimallashtirilgan sahifalar.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="skills.label">
+                03 — skills
+            </div>
+
+            <div class="sec-title reveal" data-i18n="skills.title">
+                Texnik ko'nikmalar
+            </div>
+
+            <div class="skills-list">
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">HTML5</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="95"></div>
+                    </div>
+
+                    <div class="skill-pct">95%</div>
+                </div>
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">CSS3</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="90"></div>
+                    </div>
+
+                    <div class="skill-pct">90%</div>
+                </div>
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">JavaScript</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="85"></div>
+                    </div>
+
+                    <div class="skill-pct">85%</div>
+                </div>
+
+                <div class="skill-row reveal">
+                    <div class="skill-name">Python</div>
+
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" data-pct="75"></div>
+                    </div>
+
+                    <div class="skill-pct">75%</div>
+                </div>
+
+            </div>
+
+            <div class="tools-grid stagger">
+
+                <div class="tool-chip reveal">Git</div>
+                <div class="tool-chip reveal">VS Code</div>
+                <div class="tool-chip reveal">Figma</div>
+                <div class="tool-chip reveal">npm</div>
+                <div class="tool-chip reveal">Chrome DevTools</div>
+                <div class="tool-chip reveal">Linux</div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="process.label">
+                04 — process
+            </div>
+
+            <div class="sec-title reveal" data-i18n="process.title">
+                Qanday ishlayman
+            </div>
+
+            <p class="sec-sub reveal" data-i18n="process.subtitle">
+                Har bir loyiha shu real ketma-ketlik bo'yicha davom etadi.
+            </p>
+
+            <div class="process-list">
+
+                <div class="process-item reveal">
+                    <div class="process-num">01</div>
+
+                    <div>
+                        <h3 data-i18n="process.step1.title">
+                            Tushunish
+                        </h3>
+
+                        <p data-i18n="process.step1.text">
+                            Loyiha maqsadi, auditoriya va texnik talablarni aniqlab olaman.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item reveal">
+                    <div class="process-num">02</div>
+
+                    <div>
+                        <h3 data-i18n="process.step2.title">
+                            Rejalashtirish
+                        </h3>
+
+                        <p data-i18n="process.step2.text">
+                            Struktura, komponentlar va texnologiyalarni belgilayman.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item reveal">
+                    <div class="process-num">03</div>
+
+                    <div>
+                        <h3 data-i18n="process.step3.title">
+                            Qurish
+                        </h3>
+
+                        <p data-i18n="process.step3.text">
+                            Toza, test qilingan kod bilan bosqichma-bosqich amalga oshiraman.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item reveal">
+                    <div class="process-num">04</div>
+
+                    <div>
+                        <h3 data-i18n="process.step4.title">
+                            Yetkazish
+                        </h3>
+
+                        <p data-i18n="process.step4.text">
+                            Test, optimallashtirish va joylashtirishdan so'ng natijani topshiraman.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="experience.label">
+                05 — experience
+            </div>
+
+            <div class="sec-title reveal" data-i18n="experience.title">
+                Tajriba
+            </div>
+
+            <div class="timeline">
+
+                <div class="tl-item reveal">
+                    <div class="tl-num">01</div>
+
+                    <div>
+                        <div class="tl-role" data-i18n="experience.item1.role">
+                            D4RK.SOFT — Yurutuvchi
+                        </div>
+
+                        <div class="tl-meta">
+                            D4RK.SOFT · 2025-2026
+                        </div>
+
+                        <div class="tl-desc" data-i18n="experience.item1.desc">
+                            D4RK.SOFT - loyihasida 2025 yil yuritishni boshlab
+                            ko'p odamlarni kod yozishga qiziqtirganman.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tl-item reveal">
+                    <div class="tl-num">02</div>
+
+                    <div>
+                        <div class="tl-role" data-i18n="experience.item2.role">
+                            prodent.uz — Expert
+                        </div>
+
+                        <div class="tl-meta">
+                            prodent.uz · 2026-20??
+                        </div>
+
+                        <div class="tl-desc" data-i18n="experience.item2.desc">
+                            prodent.uz - kompanyasida veb sayt, ilovamizni
+                            odamlarga tushuntirib ularga komak berib kelmoqdaman.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tl-item reveal">
+                    <div class="tl-num">03</div>
+
+                    <div>
+                        <div class="tl-role" data-i18n="experience.item3.role">
+                            isom1ddinov.uz — Developer
+                        </div>
+
+                        <div class="tl-meta">
+                            isom1ddinov.uz · 2026-2099
+                        </div>
+
+                        <div class="tl-desc" data-i18n="experience.item3.desc">
+                            isom1ddinov.uz - loyihasida ozimning hayotim,
+                            qilgan ishlarim va bilimlarimni ulashib bormoqdaman.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="projects.label">
+                06 — projects
+            </div>
+
+            <div class="sec-title reveal" data-i18n="projects.title">
+                Loyihalar
+            </div>
+
+            <p class="sec-sub reveal" data-i18n="projects.subtitle">
+                Kartani bosing — batafsil ma'lumot ochiladi.
+            </p>
+
+
+            <!-- FILTERS -->
+
+            <div class="project-filters reveal">
+
+                <button class="filter-btn active" data-filter="all" data-i18n="projects.filter.all">
+                    Barchasi
+                </button>
+
+                <button class="filter-btn" data-filter="web" data-i18n="projects.filter.web">
+                    Web
+                </button>
+
+                <button class="filter-btn" data-filter="script" data-i18n="projects.filter.script">
+                    Skript
+                </button>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <div class="projects-grid stagger" id="projectsGrid">
+
+
+                <!-- =========================
+                 D4RK SOFT
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="web" data-title="D4RK SOFT" data-desc=""
+                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.1.title" data-i18n-desc="project.1.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/1.jpg" alt="D4RK SOFT">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.1.title">
+                            D4RK SOFT
+                        </h3>
+
+                        <p data-i18n="project.1.short">
+                            Eng yaxshi qilgan saytlarimdan biri
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JS</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                 LANDGURU
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="web" data-title="Landguru" data-desc=""
+                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.2.title" data-i18n-desc="project.2.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/2.jpg" alt="Landguru">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.2.title">
+                            Landguru
+                        </h3>
+
+                        <p data-i18n="project.2.short">
+                            Mobil ilova uchun yaratilgan landing page
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JS</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                 AVTOXABAR
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="script" data-title="Avtoxabar" data-desc=""
+                    data-tags="HTML,Python" data-i18n-title="project.3.title" data-i18n-desc="project.3.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/4.png" alt="Avtoxabar">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.3.title">
+                            Avtoxabar
+                        </h3>
+
+                        <p data-i18n="project.3.short">
+                            Python asosida yozilgan Telegram avtoxabar
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>Python</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                 MOUNTAIN
+            ========================== -->
+
+                <div class="project-card reveal" data-cat="web" data-title="Mountain" data-desc=""
+                    data-tags="HTML,CSS,JavaScript" data-i18n-title="project.4.title" data-i18n-desc="project.4.desc">
+
+                    <div class="project-thumb">
+
+                        <img src="img/3.jpg" alt="Mountain">
+
+                    </div>
+
+
+                    <div class="project-body">
+
+                        <h3 data-i18n="project.4.title">
+                            Mountain
+                        </h3>
+
+                        <p data-i18n="project.4.short">
+                            Qo'lda yozilgan eng yaxshi saytlarimdan biri
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JS</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+
+        <div class="wrap">
+
+            <div class="wrap-narrow">
+
+                <!-- SECTION LABEL -->
+                <div class="sec-label reveal" data-i18n="testimonials.label">
+                    07 — testimonials
+                </div>
+
+
+                <!-- SECTION TITLE -->
+                <div class="sec-title reveal" data-i18n="testimonials.title">
+                    Mijozlar fikri
+                </div>
+
+
+                <!-- TESTIMONIAL CAROUSEL -->
+                <div class="testimonial-carousel reveal">
+
+                    <div class="testimonial-track" id="testimonialTrack">
+
+                        <!-- COMMENT 1 -->
+                        <div class="testimonial-slide">
+
+                            <div class="testimonial-card">
+
+                                <p>
+                                    Ishlariz chindan zor ekan siz bilan ishlaganimdan xursandman.
+                                </p>
+
+                                <div class="testimonial-name">
+                                    Anvarbek Toshov
+                                </div>
+
+                                <div class="testimonial-role">
+                                    Stamatolog, Wallnut Tree
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COMMENT 2 -->
+                        <div class="testimonial-slide">
+
+                            <div class="testimonial-card">
+
+                                <p>
+                                    ishlarizga omad raxmat zor tayyorlab berdiz.
+                                </p>
+
+                                <div class="testimonial-name">
+                                    Shoxruh
+                                </div>
+
+                                <div class="testimonial-role">
+                                    Nomalum, Nomalum
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COMMENT 3 -->
+                        <div class="testimonial-slide">
+
+                            <div class="testimonial-card">
+
+                                <p>
+                                    Ого, я видел ваши работы они просто отличные.
+                                </p>
+
+                                <div class="testimonial-name">
+                                    Lina
+                                </div>
+
+                                <div class="testimonial-role">
+                                    Logist, diip.uz
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CAROUSEL DOTS -->
+                    <div class="carousel-dots" id="carouselDots"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Navbar'ga qo'shiladigan havola -->
+    <div class="wrap" id="comments">
+        <div class="sec-label reveal" data-i18n="commemts.label">
+                    08 — comments
+                </div>
+                <div class="sec-title reveal" data-i18n="comments.title">
+                    Izoxlar
+                </div>
+    </div>
+
+
+                <!-- SECTION TITLE -->
+                
+    <!-- Otzivi / Izohlar Bo'limi -->
+    <section id="reviews-section" class="reviews-container">
+        
+
+        <!-- Auth Blok: Tizimga kirish yoki ro'yxatdan o'tish -->
+        <div id="auth-block" class="auth-card">
+            <form id="auth-form" onsubmit="event.preventDefault(); handleAuth();">
+                <div class="auth-tabs">
+                <button id="tab-login" class="active" onclick="toggleAuthTab('login')">Login</button>
+                <button id="tab-register" onclick="toggleAuthTab('register')">Sign Up</button>
+            </div>
+                <input type="text" id="auth-username" placeholder="Foydalanuvchi nomi" required>
+                <input type="password" id="auth-password" placeholder="Parol" required>
+                <button type="button" id="auth-submit-btn" onclick="handleAuth()">Login</button>
+            </form>
+        </div>
+
+        <!-- User Profile va Logout bloki -->
+        <div class="div">
+            <div id="user-block" class="user-card" style="display: none;">
+            <span>Welcome, <b id="user-display-name"></b> <span id="user-badge"></span></span>
+            <button onclick="logout()" class="btn-logout">Log Out</button>
+        </div>
+
+        <!-- Izoh qoldirish formasi -->
+        <div id="comment-form-block" class="comment-form-card" style="display: none;">
+            <textarea id="comment-text" placeholder="Share your thoughts..." rows="3"></textarea>
+            <button onclick="postComment()" class="btn-send">Send</button>
+        </div>
+        </div>
+
+        <!-- Izohlar Ro'yxati -->
+        <div id="comments-list" class="comments-list">
+            <!-- Izohlar JavaScript orqali yuklanadi -->
+            
+        </div>
+
+        <!-- Barcha izohlarni ko'rish tugmasi -->
+        
+    </section>
+    <div id="comments-toggle-container" style="text-align: center;"></div>
+
+    <style>
+        /* Javoblar (Replies) konteyneri - Ichkariga surilgan */
+        .replies-container {
+            margin-left: 30px;
+            margin-top: 10px;
+            padding-left: 12px;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            /* Dastlab yashiringan bo'ladi */
+        }
+
+        /* Instagram uslubidagi javoblarni ko'rish tugmasi */
+        .btn-view-replies {
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+
+        .btn-view-replies:hover {
+            color: var(--accent, #39ff7f);
+        }
+
+        /* Javob yozish (Reply Form) formasi */
+        .reply-form-box {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .reply-form-box input {
+            flex: 1;
+            background: #121212;
+            border: 1px solid #2a2d2e;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .btn-reply {
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-reply:hover {
+            color: #39ff7f;
+        }
+
+        /* Izohlar bo'limi umumiy konteyneri */
+        .reviews-container {
+            max-width: 1040px;
+            padding: 18px;
+            color: #d4d4d4;
+            font-family: inherit;
+            display: flex;
+            margin: 0 auto;
+            margin-bottom: 0;
+        }
+
+
+
+        /* Glassmorphism kartochkalar */
+        .user-card,
+        .comment-form-card {
+            background: color-mix(in srgb, var(--bg, #0d1117) 80%, transparent);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgb(0, 255, 110);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100% !important;
+        }
+
+        .auth-card {
+            margin-right: 15px;
+            height: 457px !important;
+            background: color-mix(in srgb, var(--bg, #0d1117) 80%, transparent);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgb(0, 255, 110);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100% !important;
+        }
+        .div {
+            width: 100% !important;
+            margin-right: 15px;
+        }
+
+        /* Auth Tablar */
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        #auth-username {
+            margin: 20px 0px;
+        }
+        #auth-password {
+            margin-bottom: 20px;
+        }
+        .btn-toggle-comments {
+            margin-bottom: 40px !important;
+        }
+
+        .auth-tabs button {
+            background: none;
+            border: 1px solid #39ff7f;
+            color: #39ff7f;
+            cursor: pointer;
+            font-size: 16px;
+            padding-bottom: 5px;
+            padding: 8px 30px;
+            border-radius: 8px;
+        }
+
+        .auth-tabs button.active {
+            padding: 8px 30px;
+            border-bottom: 2px solid var(--accent, #39ff7f);
+            background: #39ff7f;
+            color: #000;
+        }
+
+        #auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #auth-form input,
+        .comment-form-card textarea {
+            background: #1e1e1e;
+            border: 1px solid #2a2d2e;
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        button.btn-send,
+        #auth-submit-btn {
+            background: var(--accent, #39ff7f);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            align-self: flex-end;
+            transition: 0.2s;
+        }
+
+        button.btn-send:hover,
+        #auth-submit-btn:hover {
+            opacity: 0.85;
+        }
+
+        .btn-logout {
+            background: var(--accent, #39ff7f);
+            color: #000000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        /* Izohlar Kartochkasi */
+        .comment-item {
+            background: #1e1e1e;
+            border: 1px solid #2a2d2e;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            width: 100% !important;
+        }
+        
+        .auth-form {
+            width: 40%;
+        }
+        .comments-list {
+            width: 100% !important;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        /* Oddiy foydalanuvchi niki */
+        .author-name {
+            font-weight: 200;
+            color: #ffffff;
+        }
+
+        /* CREATOR (isom1ddinov) niki stili */
+        .author-name.creator-name {
+            color: #ff3939 !important;
+            text-shadow: 0 0 10px rgba(57, 255, 127, 0.6);
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* CREATOR BADGE */
+        .badge-creator {
+            background: linear-gradient(135deg, #00ff15, #5eff56);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 8px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px rgba(215, 0, 227, 0.4);
+        }
+
+        .comment-date {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .comment-text {
+            font-size: 14px;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+        #comment-text {
+            width: 100%;
+            height: 100px;
+        }
+        .btn-send {
+            width: 100%;
+        }
+        #auth-submit-btn {
+            width: 100%;
+        }
+
+        /* O'chirish tugmasi */
+        .btn-delete {
+            background: transparent;
+            border: 1px solid #ff5f56;
+            color: #ff5f56;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-delete:hover {
+            background: #ff5f56;
+            color: #fff;
+        }
+
+        /* Barcha izohlarni ko'rish tugmasi */
+        .btn-toggle-comments {
+            background: transparent;
+            border: 1px solid #39ff7f;
+            color: #39ff7f;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-toggle-comments:hover {
+            background: #39ff7f;
+            color: #000;
+            box-shadow: 0 0 15px rgba(57, 255, 127, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Founder badji va stili */
+.author-name.founder-name {
+    color: #39ff7f !important;
+    text-shadow: 0 0 12px rgba(57, 255, 127, 0.7);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.badge-founder {
+    background: linear-gradient(135deg, #39ff7f, #00e5ff);
+    color: #000;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 3px 8px;
+    border-radius: 8px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(57, 255, 127, 0.4);
+}
+
+.badge-admin {
+    background: linear-gradient(135deg, #00ff2f, #00ff1e);
+    color: #000000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 8px;
+    margin-left: 8px;
+    text-transform: uppercase;
+}
+
+/* Qadalgan izoh ramkasi */
+.comment-item.pinned-comment {
+    border: 1px solid #39ff7f !important;
+    background: color-mix(in srgb, var(--accent, #39ff7f) 5%, transparent);
+    box-shadow: 0 0 20px rgba(57, 255, 127, 0.15);
+    width: 100% !important;
+}
+
+.badge-pinned {
+    background: #39ff7f;
+    color: #000;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 7px;
+    border-radius: 6px;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    width: 30px;
+    height: 22px;
+}
+
+.pinn {
+    width: 18px !important;
+    height: 17px !important;
+}
+
+        .user-card {
+            width: 100% !important;
+            margin-bottom: 15px;
+        }
+        .comment-form-card {
+            width: 100% !important;
+            margin-bottom: 15px !important;
+        }
+
+.heardd {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.gang {
+    align-items: center !important;
+    display: flex !important;
+}
+
+.comment-date {
+    align-items: end !important;
+    margin-left: auto !important;
+}
+
+.comment-header {
+    align-items: center !important;
+}
+
+/* Minimalistik Neon Tugmalar */
+.comment-footer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-action-icon {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d4d4d4;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
+
+.btn-action-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.btn-action-icon:hover {
+    border-color: #39ff7f;
+    color: #39ff7f;
+    box-shadow: 0 0 10px rgba(57, 255, 127, 0.3);
+}
+
+.badge-founder-liked {
+    background: rgba(57, 255, 127, 0.1);
+    border: 1px solid #39ff7f;
+    color: #39ff7f;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn-admin-action {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #aaa;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.2s;
+}
+
+.btn-admin-action:hover {
+    border-color: #39ff7f;
+    color: #39ff7f;
+}
+
+#comments {
+    padding-top: 70px;
+}
+
+.btn-delete-action:hover {
+    border-color: #ff5f56;
+    color: #ff5f56;
+}
+
+
+    </style>
+
+
+    <!-- FACTS -->
+    <section id="facts" style="padding:0; border-bottom:1px solid var(--border);">
+
+        <div class="facts-grid reveal">
+
+            <div class="fact-cell">
+
+                <div class="n mono">
+                    30+
+                </div>
+
+                <div class="l" data-i18n="facts.1">
+                    bajarilgan vazifalar
+                </div>
+
+            </div>
+
+
+            <div class="fact-cell">
+
+                <div class="n mono">
+                    3
+                </div>
+
+                <div class="l" data-i18n="facts.2">
+                    yillik tajriba
+                </div>
+
+            </div>
+
+
+            <div class="fact-cell">
+
+                <div class="n mono">
+                    4
+                </div>
+
+                <div class="l" data-i18n="facts.3">
+                    asosiy texnologiya
+                </div>
+
+            </div>
+
+
+            <div class="fact-cell">
+
+                <div class="n mono">
+                    100%
+                </div>
+
+                <div class="l" data-i18n="facts.4">
+                    o'z vaqtida topshirish
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- BLOG / CODING -->
+    <section id="blog">
+
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="blog.label">
+                08 — Coding
+            </div>
+
+
+            <div class="sec-title reveal" data-i18n="blog.title">
+                Kodlar
+            </div>
+
+
+            <p class="sec-sub reveal" data-i18n="blog.subtitle">
+                Frontend va Python haqida yozgan qisqa qaydlar (placeholder).
+            </p>
+
+
+            <div class="blog-grid stagger">
+
+                <div class="blog-card reveal">
+
+                    <div class="blog-date" data-i18n="blog.date">
+                        2026 · Kod
+                    </div>
+
+
+                    <div class="code-window">
+
+                        <div class="code-header">
+                            <span class="circle red"></span>
+                            <span class="circle yellow"></span>
+                            <span class="circle green"></span>
+
+                            <span class="file">
+                                <img src="img/js.svg" alt="">
+                                app.js
+                            </span>
+                        </div>
+
+                        <pre
+                            class="code-content"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> <span class="code-symbol">=</span> <span class="code-bracket">{</span>
+    <span class="code-property">name</span><span class="code-symbol">:</span> <span class="code-string">"Ozodbek Isomiddinov"</span><span class="code-symbol">,</span>
+
+    <span class="code-property">skills</span><span class="code-symbol">:</span> <span class="code-bracket">[</span>
+        <span class="code-string">"HTML"</span><span class="code-symbol">,</span>
+        <span class="code-string">"CSS"</span><span class="code-symbol">,</span>
+        <span class="code-string">"JavaScript"</span><span class="code-symbol">,</span>
+        <span class="code-string">"Python"</span>
+    <span class="code-bracket">]</span><span class="code-symbol">,</span>
+
+    <span class="code-property">experience</span><span class="code-symbol">:</span> <span class="code-number">3</span><span class="code-symbol">,</span>
+    <span class="code-property">availableForWork</span><span class="code-symbol">:</span> <span class="code-boolean">true</span>
+<span class="code-bracket">}</span><span class="code-symbol">;</span>
+
+<span class="code-function">console</span><span class="code-symbol">.</span><span class="code-method">log</span><span class="code-symbol">(</span><span class="code-string">"Welcome to my Portfolio 🚀"</span><span class="code-symbol">);</span></code></pre>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+
+        <div class="wrap">
+
+            <div class="wrap-narrow">
+
+                <div class="sec-label reveal" data-i18n="faq.label">
+                    09 — faq
+                </div>
+
+                <div class="sec-title reveal" data-i18n="faq.title">
+                    Ko'p so'raladigan savollar
+                </div>
+
+
+                <div class="faq-list reveal">
+
+                    <!-- FAQ 1 -->
+                    <div class="faq-item">
+
+                        <button class="faq-q">
+
+                            <span data-i18n="faq.1.question">
+                                Loyiha narxi qanday belgilanadi?
+                            </span>
+
+                            <span class="plus">+</span>
+
+                        </button>
+
+                        <div class="faq-a">
+
+                            <div class="faq-a-inner" data-i18n="faq.1.answer">
+                                Loyiha narxi odatda uni qanchalik katta
+                                va uni dizayn va animatsiyalariga qarab belgilanadi.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+
+                        <button class="faq-q">
+
+                            <span data-i18n="faq.2.question">
+                                Loyiha qancha vaqtda tayyor bo'ladi?
+                            </span>
+
+                            <span class="plus">+</span>
+
+                        </button>
+
+                        <div class="faq-a">
+
+                            <div class="faq-a-inner" data-i18n="faq.2.answer">
+                                Loyiha qancha vaqtda toyyor bolishi
+                                uni qanchalik katta yoki kichikligiga qarab belgilanadi.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+
+                        <button class="faq-q">
+
+                            <span data-i18n="faq.3.question">
+                                Tayyor saytga keyinchalik o'zgartirish kirita olasizmi?
+                            </span>
+
+                            <span class="plus">+</span>
+
+                        </button>
+
+                        <div class="faq-a">
+
+                            <div class="faq-a-inner" data-i18n="faq.3.answer">
+                                Ha agar bizdan sayt yasatgan bolsangiz
+                                30 kun davomida uni bepul ozgartirishlar kiritib beramiz.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+
+                        <button class="faq-q">
+
+                            <span data-i18n="faq.4.question">
+                                Qanday to'lov usullarini qabul qilasiz?
+                            </span>
+
+                            <span class="plus">+</span>
+
+                        </button>
+
+                        <div class="faq-a">
+
+                            <div class="faq-a-inner" data-i18n="faq.4.answer">
+                                Mijozlarni o'ylagan holda har qanday
+                                to'lov usullarini qabul qilamiz.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <div class="wrap">
+
+            <div class="sec-label reveal" data-i18n="contact.label">
+                10 — contact
+            </div>
+
+
+            <div class="contact-big reveal">
+
+                <span data-i18n="contact.title">
+                    Loyiha bormi?
+                </span>
+
+                <br>
+
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@isom1ddinov.uz&su=Portfolio%20orqali%20bog%27lanish"
+                    id="scramble-mail" target="_blank" rel="noopener">
+                    admin@isom1ddinov.uz
+                </a>
+
+            </div>
+
+
+            <div class="contact-layout">
+
+                <div class="contact-grid reveal">
+
+                    <a class="contact-row" href="https://github.com/isom1ddinov" target="_blank" rel="noopener">
+                        <span>github</span>
+                        <span class="arrow">
+                            @isom1ddinov →
+                        </span>
+                    </a>
+
+
+                    <a class="contact-row" href="https://instagram.com/isom1ddinov.uz" target="_blank" rel="noopener">
+                        <span>instagram</span>
+                        <span class="arrow">
+                            @isom1ddinov.uz →
+                        </span>
+                    </a>
+
+
+                    <a class="contact-row" href="https://t.me/isom1ddinov_uz" target="_blank" rel="noopener">
+                        <span>telegram</span>
+                        <span class="arrow">
+                            @isom1ddinov_uz →
+                        </span>
+                    </a>
+
+
+                    <a class="contact-row"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@isom1ddinov.uz&su=Portfolio%20orqali%20bog%27lanish"
+                        target="_blank" rel="noopener">
+
+                        <span>email</span>
+
+                        <span class="arrow">
+                            admin@isom1ddinov.uz →
+                        </span>
+                    </a>
+
+
+                    <button class="contact-row" id="copyEmailBtn" type="button">
+                        <span data-i18n="contact.copy">
+                            email nusxalash
+                        </span>
+
+                        <span class="arrow">
+                            copy →
+                        </span>
+                    </button>
+                </div>
+
+
+
+
+                <form action="">
+                    <div class="form-field">
+
+                        <label for="f-name" data-i18n="contact.name">
+                            Ism
+                        </label>
+
+                        <input id="f-name" type="text" placeholder="Ismingiz"
+                            data-i18n-placeholder="contact.namePlaceholder" required>
+
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="f-email" data-i18n="contact.email">
+                            Email
+                        </label>
+
+                        <input id="f-email" type="email" placeholder="email@misol.com"
+                            data-i18n-placeholder="contact.emailPlaceholder" required>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="f-msg" data-i18n="contact.message">
+                            Xabar
+                        </label>
+
+                        <textarea id="f-msg" rows="4" placeholder="Loyiha haqida qisqacha..."
+                            data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
+
+                    </div>
+
+
+                    <button class="btn btn-primary form-submit" type="submit" data-i18n="contact.submit">
+                        Yuborish
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="marquee">
+            <div class="marquee-track">
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+                <span>LET'S BUILD SOMETHING</span><span class="dot">●</span><span>isom1ddinov.uz</span><span
+                    class="dot">●</span>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="footer-main">
+                <div>
+                    <div class="footer-brand">isom1ddinov<span class="dot">.</span>uz</div>
+                    <p class="footer-desc" data-i18n="footer.description">Frontend dasturchi. HTML, CSS, JavaScript va
+                        Python bilan ishlayman.</p>
+                </div>
+                <div class="cols">
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.page">Sahifa</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.more">Ko'proq</h4>
+                        <ul>
+                            <li><a href="#experience">Experience</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.social">Ijtimoiy</h4>
+                        <ul>
+                            <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="https://instagram.com/isom1ddinov.uz" target="_blank"
+                                    rel="noopener">Instagram</a>
+                            </li>
+                            <li><a href="https://t.me/isom1ddinov_uz" target="_blank" rel="noopener">Telegram</a></li>
+                            <li><a href="mailto:@xwisomiddinov@gmail.com">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="wrap foot-bottom">
+            <span data-i18n="footer.copyright">© 2026 isom1ddinov.uz</span>
+            <span>built with HTML · CSS · JS</span>
+        </div>
+    </footer>
+
+    <button id="back-to-top" title="Yuqoriga">↑</button>
+
+    <div id="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose">×</button>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDesc"></p>
+            <div class="modal-tags" id="modalTags"></div>
+        </div>
+    </div>
+
+
+
+    <script>
+        /* =========================================================
+        LOADER
+        ========================================================= */
+        const loader = document.getElementById('loader');
+        const loaderBar = document.getElementById('loaderBar');
+        const loadpct = document.getElementById('loadpct');
+        let p = 0;
+        const loadTimer = setInterval(() => {
+            p += Math.ceil(Math.random() * 14);
+            if (p >= 100) { p = 100; clearInterval(loadTimer); setTimeout(() => loader.classList.add('hide'), 250); }
+            loaderBar.style.width = p + '%';
+            loadpct.textContent = p + '%';
+        }, 100);
+
+        /* =========================================================
+           SCROLL PROGRESS BAR
+        ========================================================= */
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        /* =========================================================
+           CUSTOM CURSOR + TRAIL
+        ========================================================= */
+        const dot = document.querySelector('.cursor-dot');
+        const ring = document.querySelector('.cursor-ring');
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', e => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+            ring.style.left = mouseX + 'px'; ring.style.top = mouseY + 'px';
+        });
+        function bindCursorHover(selector, cls = 'hover') {
+            document.querySelectorAll(selector).forEach(el => {
+                el.addEventListener('mouseenter', () => ring.classList.add(cls));
+                el.addEventListener('mouseleave', () => ring.classList.remove(cls));
+            });
+        }
+        bindCursorHover('a, .skill-card, .project-card, .tag, .service-card, button, .faq-q');
+
+        // cursor trail canvas
+        const trailCanvas = document.getElementById('cursor-trail-canvas');
+        const tctx = trailCanvas.getContext('2d');
+        let trailPoints = [];
+        function resizeTrail() { trailCanvas.width = innerWidth; trailCanvas.height = innerHeight; }
+        window.addEventListener('resize', resizeTrail); resizeTrail();
+        window.addEventListener('mousemove', e => {
+            trailPoints.push({ x: e.clientX, y: e.clientY, life: 1 });
+            if (trailPoints.length > 18) trailPoints.shift();
+        });
+        function drawTrail() {
+            tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+            trailPoints.forEach((pt, i) => {
+                tctx.beginPath();
+                tctx.arc(pt.x, pt.y, (i / trailPoints.length) * 4, 0, Math.PI * 2);
+                tctx.fillStyle = 'rgba(57,255,127,' + ((i / trailPoints.length) * 0.35) + ')';
+                tctx.fill();
+            });
+            requestAnimationFrame(drawTrail);
+        }
+        drawTrail();
+
+        /* =========================================================
+           THEME TOGGLE (session only, no localStorage)
+        ========================================================= */
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('light');
+            themeToggle.textContent = document.documentElement.classList.contains('light') ? '◑' : '◐';
+        });
+
+        /* =========================================================
+           MOBILE NAV
+        ========================================================= */
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const navBurger = document.getElementById("navBurger");
+            const navLinks = document.getElementById("navLinks");
+            const transition = document.getElementById("pageTransition");
+
+            if (!navBurger || !navLinks || !transition) return;
+
+
+            /* =====================================================
+               PIXEL'LARNI YARATISH — kvadrat va zich (isladjan uslubida)
+               Ustun/qator soni ekran o'lchamiga qarab hisoblanadi, shunda
+               har bir katak doim KVADRAT bo'ladi (cho'zilgan to'rtburchak
+               emas) va ekran kattaligidan qat'iy nazar zich piksel to'ri
+               hosil bo'ladi.
+               ===================================================== */
+
+            const CELL_SIZE = 34; // taxminiy piksel o'lchami (px) — kichikroq son = ko'proq piksel
+
+            let columns = 12;
+            let rows = 7;
+            const pixels = [];
+
+            function buildPixelGrid() {
+
+                transition.innerHTML = "";
+                pixels.length = 0;
+
+                columns = Math.max(8, Math.round(window.innerWidth / CELL_SIZE));
+                rows = Math.max(8, Math.round(window.innerHeight / CELL_SIZE));
+
+                transition.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+                transition.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+
+                const centerX = (columns - 1) / 2;
+                const centerY = (rows - 1) / 2;
+
+                for (let i = 0; i < columns * rows; i++) {
+
+                    const pixel = document.createElement("div");
+
+                    pixel.className = "transition-pixel";
+
+                    const row = Math.floor(i / columns);
+                    const col = i % columns;
+
+                    const distance = Math.sqrt(
+                        Math.pow(col - centerX, 2) +
+                        Math.pow(row - centerY, 2)
+                    );
+
+                    pixel.dataset.distance = distance;
+
+                    /* har bir katakka tasodifiy davomiylik — checkerboard
+                       naqshi hech qachon aynan bir xil takrorlanmasligi uchun */
+                    pixel.style.animationDuration = (0.32 + Math.random() * 0.24).toFixed(2) + "s";
+
+                    transition.appendChild(pixel);
+
+                    pixels.push(pixel);
+                }
+            }
+
+            buildPixelGrid();
+
+            /* ekran o'lchami o'zgarsa (masalan, mobil aylantirilsa), to'rni
+               qayta hisoblab, kataklar kvadrat bo'lib qolishini ta'minlaydi */
+            let pixelGridResizeTimer;
+            window.addEventListener("resize", () => {
+                clearTimeout(pixelGridResizeTimer);
+                pixelGridResizeTimer = setTimeout(buildPixelGrid, 300);
+            });
+
+
+            /* =====================================================
+               PIXEL TRANSITION
+               ===================================================== */
+
+            function playTransition(callback) {
+
+                transition.classList.remove(
+                    "pixel-open",
+                    "pixel-close"
+                );
+
+                /* Tarqalish umumiy vaqti doim shu atrofda qolishi uchun,
+                   har bir katakning kechikishi umumiy kataklar soniga
+                   bo'linadi — kataklar qancha ko'p bo'lmasin, animatsiya
+                   bir xil tezlikda ketadi */
+                const MAX_SPREAD_MS = 260;
+                const perPixelDelay = pixels.length > 1
+                    ? MAX_SPREAD_MS / (pixels.length - 1)
+                    : 0;
+
+                /* Markazdan tashqariga */
+
+                const openOrder = [...pixels].sort(
+                    (a, b) =>
+                        Number(a.dataset.distance) -
+                        Number(b.dataset.distance)
+                );
+
+
+                openOrder.forEach((pixel, index) => {
+
+                    pixel.style.animationDelay =
+                        `${index * perPixelDelay}ms`;
+
+                });
+
+
+                transition.classList.add("pixel-open");
+
+
+                /* Ekran yopilgandan keyin menu o'zgaradi */
+
+                setTimeout(() => {
+
+                    if (callback) {
+                        callback();
+                    }
+
+
+                    /* Endi teskari tartib */
+
+                    const closeOrder = [...pixels].sort(
+                        (a, b) =>
+                            Number(b.dataset.distance) -
+                            Number(a.dataset.distance)
+                    );
+
+
+                    closeOrder.forEach((pixel, index) => {
+
+                        pixel.style.animationDelay =
+                            `${index * perPixelDelay}ms`;
+
+                    });
+
+
+                    transition.classList.remove("pixel-open");
+
+                    transition.classList.add("pixel-close");
+
+
+                    setTimeout(() => {
+
+                        transition.classList.remove(
+                            "pixel-close"
+                        );
+
+
+                        pixels.forEach(pixel => {
+                            pixel.style.animationDelay = "";
+                        });
+
+
+                    }, 520);
+
+                }, 560);
+
+            }
+
+
+            /* =====================================================
+               BURGER
+               ===================================================== */
+
+            navBurger.addEventListener("click", () => {
+
+                const menuOpen =
+                    navLinks.classList.contains("open");
+
+
+                playTransition(() => {
+
+                    if (menuOpen) {
+
+                        navLinks.classList.remove("open");
+
+                        navBurger.classList.remove("open");
+
+                        document.body.classList.remove(
+                            "menu-open"
+                        );
+
+                    } else {
+
+                        navLinks.classList.add("open");
+
+                        navBurger.classList.add("open");
+
+                        document.body.classList.add(
+                            "menu-open"
+                        );
+
+                    }
+
+                });
+
+            });
+
+
+            /* =====================================================
+               MENU LINK
+               ===================================================== */
+
+            document
+                .querySelectorAll("[data-nav]")
+                .forEach(link => {
+
+                    link.addEventListener("click", e => {
+
+                        if (window.innerWidth > 760) {
+                            return;
+                        }
+
+
+                        const target =
+                            link.getAttribute("href");
+
+                        const section =
+                            document.querySelector(target);
+
+                        if (!section) return;
+
+
+                        e.preventDefault();
+
+
+                        playTransition(() => {
+
+                            navLinks.classList.remove("open");
+
+                            navBurger.classList.remove("open");
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+
+
+                            setTimeout(() => {
+
+                                section.scrollIntoView({
+                                    behavior: "instant",
+                                    block: "start"
+                                });
+
+                            }, 20);
+
+                        });
+
+                    });
+
+                });
+
+
+            /* =====================================================
+               ESC
+               ===================================================== */
+
+            document.addEventListener("keydown", e => {
+
+                if (
+                    e.key === "Escape" &&
+                    navLinks.classList.contains("open")
+                ) {
+
+                    navBurger.click();
+
+                }
+
+            });
+
+        });
+
+        /* =========================================================
+            HERO TYPED NAME + ROLE CYCLE
+        ========================================================= */
+
+        const target = "isom1ddinov";
+        const nameEl = document.getElementById("typed-name");
+
+        if (nameEl) {
+
+            target.split("").forEach((ch, idx) => {
+
+                const s = document.createElement("span");
+
+                s.className = "letter";
+                s.textContent = ch;
+                s.style.animationDelay = (idx * 0.06) + "s";
+
+                nameEl.appendChild(s);
+
+            });
+
+        }
+
+        let roles = [];
+        let roleIdx = 0;
+        let charIdx = 0;
+        let deleting = false;
+        let roleTimer = null;
+
+        const roleEl = document.getElementById("roleCycle");
+
+        function updateRoles() {
+
+            roles = [
+                language.translations["role.1"],
+                language.translations["role.2"],
+                language.translations["role.3"],
+                language.translations["role.4"]
+            ].filter(Boolean);
+
+        }
+
+        function startRoleAnimation() {
+
+            // Eski animatsiyani to'xtatish
+            clearTimeout(roleTimer);
+
+            // Hammasini boshidan boshlash
+            roleIdx = 0;
+            charIdx = 0;
+            deleting = false;
+
+            if (!roles.length || !roleEl) return;
+
+            roleEl.textContent = "";
+
+            roleTimer = setTimeout(typeRole, 900);
+        }
+
+        function typeRole() {
+
+            if (!roles.length || !roles[roleIdx]) {
+                return;
+            }
+
+            const full = roles[roleIdx];
+
+            if (!deleting) {
+
+                charIdx++;
+
+                roleEl.textContent = full.slice(0, charIdx);
+
+                if (charIdx >= full.length) {
+
+                    deleting = true;
+
+                    roleTimer = setTimeout(typeRole, 1400);
+
+                    return;
+                }
+
+            } else {
+
+                charIdx--;
+
+                roleEl.textContent = full.slice(0, charIdx);
+
+                if (charIdx <= 0) {
+
+                    charIdx = 0;
+                    deleting = false;
+
+                    roleIdx = (roleIdx + 1) % roles.length;
+                }
+            }
+
+            roleTimer = setTimeout(
+                typeRole,
+                deleting ? 35 : 65
+            );
+        }
+
+
+
+
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('show'); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal, .reveal-scale').forEach(elm => io.observe(elm));
+
+        /* =========================================================
+           STAT COUNTERS
+        ========================================================= */
+        const counters = document.querySelectorAll('.stat-num');
+        const cio = new IntersectionObserver((entries) => {
+            entries.forEach(en => {
+                if (en.isIntersecting) {
+                    const elx = en.target; const tgt = +elx.dataset.target; let cur = 0;
+                    const step = Math.max(1, Math.ceil(tgt / 40));
+                    const t = setInterval(() => { cur += step; if (cur >= tgt) { cur = tgt; clearInterval(t); } elx.textContent = cur; }, 30);
+                    cio.unobserve(elx);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => cio.observe(c));
+
+        /* =========================================================
+           SKILL BARS
+        ========================================================= */
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const sio = new IntersectionObserver((entries) => {
+            entries.forEach(en => {
+                if (en.isIntersecting) {
+                    en.target.style.width = en.target.dataset.pct + '%';
+                    sio.unobserve(en.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        skillBars.forEach(b => sio.observe(b));
+
+        /* =========================================================
+           PARTICLE CANVAS (hero background)
+        ========================================================= */
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight; }
+        window.addEventListener('resize', resize);
+        function initParticles() {
+            resize();
+            particles = Array.from({ length: 400 }, () => ({
+                x: Math.random() * w, y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, r: Math.random() * 1.5 + 0.5
+            }));
+        }
+        function animateParticles() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#39ff7f';
+            particles.forEach(pt => {
+                pt.x += pt.vx; pt.y += pt.vy;
+                if (pt.x < 0) pt.x = w; if (pt.x > w) pt.x = 0; if (pt.y < 0) pt.y = h; if (pt.y > h) pt.y = 0;
+                ctx.globalAlpha = 0.9;
+                ctx.beginPath(); ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2); ctx.fill();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles(); animateParticles();
+
+        /* mouse parallax on hero content */
+        document.querySelector('.hero').addEventListener('mousemove', (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width - 0.5;
+            const relY = (e.clientY - rect.top) / rect.height - 0.5;
+            document.querySelector('.hero-inner').style.transform = `translate(${relX * 10}px, ${relY * 10}px)`;
+        });
+
+        /* =========================================================
+           SERVICE CARD TILT
+        ========================================================= */
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const rx = ((e.clientY - r.top) / r.height - 0.5) * -8;
+                const ry = ((e.clientX - r.left) / r.width - 0.5) * 8;
+                card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+            });
+            card.addEventListener('mouseleave', () => card.style.transform = '');
+        });
+
+        /* =========================================================
+           PROJECT FILTER
+        ========================================================= */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const f = btn.dataset.filter;
+                projectCards.forEach(card => {
+                    const show = f === 'all' || card.dataset.cat === f;
+                    card.style.display = show ? '' : 'none';
+                });
+            });
+        });
+
+        /* =========================================================
+           PROJECT MODAL
+        ========================================================= */
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalTags = document.getElementById('modalTags');
+        document.getElementById('modalClose').addEventListener('click', () => modalOverlay.classList.remove('open'));
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) modalOverlay.classList.remove('open'); });
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                modalTitle.textContent = card.dataset.title;
+                modalDesc.textContent = card.dataset.desc;
+                modalTags.innerHTML = card.dataset.tags.split(',').map(t => `<span>${t}</span>`).join('');
+                modalOverlay.classList.add('open');
+            });
+        });
+
+        /* =========================================================
+           TESTIMONIAL CAROUSEL
+        ========================================================= */
+        const track = document.getElementById('testimonialTrack');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dotsWrap = document.getElementById('carouselDots');
+        let activeSlide = 0;
+        slides.forEach((s, i) => {
+            const d = document.createElement('button');
+            if (i === 0) d.classList.add('active');
+            d.addEventListener('click', () => goToSlide(i));
+            dotsWrap.appendChild(d);
+        });
+        function goToSlide(i) {
+            activeSlide = i;
+            track.style.transform = `translateX(-${i * 100}%)`;
+            dotsWrap.querySelectorAll('button').forEach((d, idx) => d.classList.toggle('active', idx === i));
+        }
+        setInterval(() => { goToSlide((activeSlide + 1) % slides.length); }, 5000);
+
+        /* =========================================================
+           FAQ ACCORDION
+        ========================================================= */
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const q = item.querySelector('.faq-q');
+            const a = item.querySelector('.faq-a');
+            q.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null;
+                });
+                if (!isOpen) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+            });
+        });
+
+        /* =========================================================
+           TOAST + COPY EMAIL
+        ========================================================= */
+        const toast = document.getElementById("toast");
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2400);
+        }
+
+        const copyEmailBtn = document.getElementById("copyEmailBtn");
+
+        if (copyEmailBtn) {
+            copyEmailBtn.addEventListener("click", async () => {
+
+                try {
+                    await navigator.clipboard.writeText("admin@isom1ddinov.uz");
+                    showToast("Email nusxalandi ✓");
+
+                } catch (error) {
+
+                    const textarea = document.createElement("textarea");
+                    textarea.value = "admin@isom1ddinov.uz";
+
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand("copy");
+                    textarea.remove();
+
+                    showToast("Email nusxalandi ✓");
+                }
+
+            });
+        }
+
+        /* =========================================================
+           CONTACT FORM (static demo, no backend)
+        ========================================================= */
+        const contactForm = document.getElementById("contactForm");
+
+        if (contactForm) {
+
+            contactForm.addEventListener("submit", (e) => {
+
+                e.preventDefault();
+
+                const name = document.getElementById("f-name").value;
+                const email = document.getElementById("f-email").value;
+                const message = document.getElementById("f-msg").value;
+
+                const subject = encodeURIComponent(
+                    "Portfolio orqali bog'lanish"
+                );
+
+                const body = encodeURIComponent(
+                    `Ism: ${name}\nEmail: ${email}\n\nXabar:\n${message}`
+                );
+
+                window.open(
+                    `https://mail.google.com/mail/?view=cm&fs=1&to=admin@isom1ddinov.uz&su=${subject}&body=${body}`,
+                    "_blank"
+                );
+
+            });
+
+        }
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 600);
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        /* =========================================================
+           TEXT SCRAMBLE ON HOVER (email)
+        ========================================================= */
+        /* =========================================================
+   EMAIL TEXT SCRAMBLE ON HOVER
+========================================================= */
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const scrambleEl = document.getElementById("scramble-mail");
+
+            if (!scrambleEl) return;
+
+            const original = "admin@isom1ddinov.uz";
+
+            const chars =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            let scrambleInterval = null;
+            let delayTimeout = null;
+
+
+            function scrambleEmail() {
+
+                clearInterval(scrambleInterval);
+                clearTimeout(delayTimeout);
+
+                let iteration = 0;
+
+                scrambleInterval = setInterval(() => {
+
+                    scrambleEl.textContent = original
+                        .split("")
+                        .map((char, index) => {
+
+                            // @ va . o'zgarmaydi
+                            if (char === "@" || char === ".") {
+                                return char;
+                            }
+
+                            // O'tilgan harflar asl holatiga qaytadi
+                            if (index < iteration) {
+                                return original[index];
+                            }
+
+                            return chars[
+                                Math.floor(Math.random() * chars.length)
+                            ];
+
+                        })
+                        .join("");
+
+                    iteration += 0.7;
+
+
+                    // Animatsiya tugadi
+                    if (iteration >= original.length) {
+
+                        clearInterval(scrambleInterval);
+
+                        scrambleEl.textContent = original;
+
+                        // 2 sekund kutib yana boshlaydi
+                        delayTimeout = setTimeout(() => {
+                            scrambleEmail();
+                        }, 2000);
+
+                    }
+
+                }, 35);
+            }
+
+
+            // Birinchi animatsiyani boshlash
+            delayTimeout = setTimeout(() => {
+                scrambleEmail();
+            }, 2000);
+
+        });
+        /* =========================================================
+           EASTER EGG — KONAMI CODE
+        ========================================================= */
+        const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIdx = 0;
+        window.addEventListener('keydown', (e) => {
+            if (e.key === konami[konamiIdx]) {
+                konamiIdx++;
+                if (konamiIdx === konami.length) {
+                    showToast('🎉 Yashirin kod topildi! Salom, qiziquvchan inson.');
+                    konamiIdx = 0;
+                }
+            } else { konamiIdx = 0; }
+        });
+    </script>
+    <div class="page-transition" id="pageTransition"></div>
+    <script src="server.js"></script>
+    <script src="app.js"></script>
+    <script src="JS/config.js"></script>
+    <script src="JS/language.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+>>>>>>> 57db45d71a4f17985d3802d7d37f6455820eeaaa
 </html>

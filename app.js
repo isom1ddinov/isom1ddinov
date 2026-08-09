@@ -42,7 +42,7 @@ async function handleAuth() {
         checkAuthState();
         loadComments();
     } catch (err) {
-        alert("Server bilan bog'lanishda xatolik");
+        alert("Error connecting to server.");
     }
 }
 
