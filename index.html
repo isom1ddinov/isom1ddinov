@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ozodbek Isomiddinov | Web Developer</title>
     <meta name="description"
         content="Ozodbek Isomiddinovning portfolio sayti. HTML, CSS, JavaScript va zamonaviy veb-loyihalar.">
@@ -2763,26 +2763,26 @@
         <div id="auth-block" class="auth-card">
             <form id="auth-form" onsubmit="event.preventDefault(); handleAuth();">
                 <div class="auth-tabs">
-                <button id="tab-login" class="active" onclick="toggleAuthTab('login')">Kirish</button>
-                <button id="tab-register" onclick="toggleAuthTab('register')">Ro'yxatdan o'tish</button>
+                <button id="tab-login" class="active" onclick="toggleAuthTab('login')">Login</button>
+                <button id="tab-register" onclick="toggleAuthTab('register')">Sign Up</button>
             </div>
                 <input type="text" id="auth-username" placeholder="Foydalanuvchi nomi" required>
                 <input type="password" id="auth-password" placeholder="Parol" required>
-                <button type="button" id="auth-submit-btn" onclick="handleAuth()">Kirish</button>
+                <button type="button" id="auth-submit-btn" onclick="handleAuth()">Login</button>
             </form>
         </div>
 
         <!-- User Profile va Logout bloki -->
         <div class="div">
             <div id="user-block" class="user-card" style="display: none;">
-            <span>Xush kelibsiz, <b id="user-display-name"></b> <span id="user-badge"></span></span>
-            <button onclick="logout()" class="btn-logout">Chiqish</button>
+            <span>Welcome, <b id="user-display-name"></b> <span id="user-badge"></span></span>
+            <button onclick="logout()" class="btn-logout">Log Out</button>
         </div>
 
         <!-- Izoh qoldirish formasi -->
         <div id="comment-form-block" class="comment-form-card" style="display: none;">
-            <textarea id="comment-text" placeholder="Fikringizni yozib qoldiring..." rows="3"></textarea>
-            <button onclick="postComment()" class="btn-send">Yuborish</button>
+            <textarea id="comment-text" placeholder="Share your thoughts..." rows="3"></textarea>
+            <button onclick="postComment()" class="btn-send">Send</button>
         </div>
         </div>
 
