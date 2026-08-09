@@ -1,0 +1,441 @@
+@import "https://fonts.googleapis.com/css2?family=Megrim&display=swap";
+
+
+
+#word {
+    font-family: Megrim, cursive;
+    font-size: 20vh;
+    position: absolute;
+    margin: 10;
+    /*bottom: 0;*/
+    color: #fc0;
+    -webkit-text-stroke: 0.15vh #c0f;
+}
+
+.cols {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+:root {
+    --marquee-speed: 40s;
+    --marquee-hover-offset: -50px;
+    --marquee-hover-transition-speed: .7s;
+    --marquee-fade-edges: 30%;
+}
+
+
+
+.marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0%) 0%, #000 var(--marquee-fade-edges), #000 calc(100% - var(--marquee-fade-edges)), rgba(0, 0, 0, 0%) 100%);
+
+    &,
+    >div {
+        display: flex;
+        white-space: nowrap;
+        gap: 30px;
+    }
+
+    >div {
+        animation: animate-marquee var(--marquee-speed) infinite linear;
+        transition: var(--marquee-hover-transition-speed) margin-left ease-out;
+        will-change: transform, margin-left;
+    }
+
+    &:hover>div {
+        animation-play-state: paused;
+        margin-left: var(--marquee-hover-offset);
+    }
+}
+
+@keyframes animate-marquee {
+    0% {
+        transform: translateX(0%) translateZ(0);
+    }
+
+    100% {
+        transform: translateX(-90%) translateZ(0);
+    }
+}
+
+.code-window {
+    width: auto;
+    height: auto;
+    background: #1e1e1e;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #2a2d2e;
+    box-shadow: 0 0 40px rgba(0, 0, 0, .5);
+    font-family: "Consolas", "Fira Code", monospace;
+}
+
+.logo {
+    border-radius: 50px;
+    background: #000;
+    width: 100px;
+    height: 100px;
+}
+
+.logo h1 {
+    color: #27c93f;
+    font-size: 36px;
+}
+
+.code-header {
+    height: 42px;
+    background: #2d2d30;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.red {
+    background: #ff5f56;
+}
+
+.yellow {
+    background: #ffbd2e;
+}
+
+.green {
+    background: #27c93f;
+}
+
+.file {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 15px;
+    color: #cccccc;
+    font-size: 14px;
+}
+
+.file img {
+    width: 18px;
+}
+
+pre {
+    margin: 0;
+    padding: 25px;
+    font-size: 12px;
+    line-height: 1.9;
+    overflow: auto;
+}
+
+/* VS Code Colors */
+
+.keyword {
+    color: #569CD6;
+}
+
+.variable {
+    color: #9CDCFE;
+}
+
+.property {
+    color: #9CDCFE;
+}
+
+.operator {
+    color: #D4D4D4;
+}
+
+.string {
+    color: #CE9178;
+}
+
+.number {
+    color: #B5CEA8;
+}
+
+.boolean {
+    color: #569CD6;
+}
+
+.function {
+    color: #4EC9B0;
+}
+
+.method {
+    color: #DCDCAA;
+}
+
+.brace {
+    color: #FFD700;
+}
+
+.comma,
+.semicolon {
+    color: #D4D4D4;
+}
+
+.language-dropdown {
+    position: relative;
+}
+
+.language-btn{
+    height:40px;
+    padding:0 14px;
+    border-radius:12px;
+
+}
+.language-btn:hover {
+
+    background: rgba(255, 255, 255, .1);
+}
+
+.form-field {
+    margin: 6px 0px;
+}
+
+.language-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 80px;
+    background: color-mix(in srgb, var(--bg) 20%, transparent);
+    backdrop-filter: blur(10px);
+    /* Sayt foni bilan bir xil */
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-20px);
+
+    transition: .25s;
+
+    z-index: 9999;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .5);
+}
+
+.language-menu.show {
+    opacity: 1;
+    visibility: visible;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px);
+    transform: translateY(0);
+}
+
+.language-item {
+
+    width: 100%;
+
+    height: 42px;
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.language-item:hover {
+    background: color-mix(in srgb, var(--bg) 20%, transparent);
+    backdrop-filter: blur(10px);
+    color: var(--marquee-speed);
+}
+
+.language-item.active {
+    color: var(--accent);
+}
+
+.nav-controls {
+    display: flex;
+}
+
+/* =========================================
+   VS CODE STYLE CODE EDITOR
+========================================= */
+
+.code-content {
+    margin: 0;
+    padding: 24px 28px;
+
+    overflow-x: auto;
+
+    font-family: "Fira Code", "Consolas", "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.8;
+
+    color: #d4d4d4;
+
+    background: #0d1117;
+
+    text-align: left;
+    white-space: pre;
+}
+
+
+/* KEYWORDS */
+
+.code-keyword {
+    color: #569cd6;
+}
+
+
+/* VARIABLE */
+
+.code-variable {
+    color: #9cdcfe;
+}
+
+
+/* PROPERTY */
+
+.code-property {
+    color: #9cdcfe;
+}
+
+
+/* STRING */
+
+.code-string {
+    color: #ce9178;
+}
+
+
+/* NUMBERS */
+
+.code-number {
+    color: #b5cea8;
+}
+
+
+/* BOOLEAN */
+
+.code-boolean {
+    color: #569cd6;
+}
+
+
+/* FUNCTIONS */
+
+.code-function {
+    color: #dcdcaa;
+}
+
+
+/* METHODS */
+
+.code-method {
+    color: #dcdcaa;
+}
+
+
+/* SYMBOLS */
+
+.code-symbol {
+    color: #d4d4d4;
+}
+
+
+/* BRACKETS */
+
+.code-bracket {
+    color: #ffd700;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .code-content {
+        padding: 18px;
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+}
+
+
+/* =========================================================
+   BURGER MENU — CHECKERBOARD GLITCH TRANSITION
+   (isladjan playground videosidagidek: kataklar bir-biriga tegib
+   turadi, bo'shliq yo'q, har biri faqat TO'LIQ RANG yoki TO'LIQ
+   SHAFFOF — oraliq holat, halo yoki kattalashish yo'q. O'zgarish
+   sakrab-sakrab, "checkerboard" glitch ko'rinishida.)
+========================================================= */
+
+.page-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap: 0;
+
+    pointer-events: none;
+    background: transparent;
+}
+
+.transition-pixel {
+    background: var(--accent, #39ff7f);
+    opacity: 0;
+    will-change: opacity;
+}
+
+/* markazdan tashqariga — har bir katak bir necha marta
+   yonib-o'chib, oxirida yonib qoladi (checkerboard glitch) */
+.page-transition.pixel-open .transition-pixel {
+    animation-name: pixelFlickerIn;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pixelFlickerIn {
+    0%   { opacity: 0; }
+    1%   { opacity: 1; }
+    24%  { opacity: 1; }
+    25%  { opacity: 0; }
+    49%  { opacity: 0; }
+    50%  { opacity: 1; }
+    74%  { opacity: 1; }
+    75%  { opacity: 0; }
+    99%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* tashqaridan markazga — xuddi shunday yonib-o'chib, oxirida o'chadi */
+.page-transition.pixel-close .transition-pixel {
+    animation-name: pixelFlickerOut;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pixelFlickerOut {
+    0%   { opacity: 1; }
+    1%   { opacity: 0; }
+    24%  { opacity: 0; }
+    25%  { opacity: 1; }
+    49%  { opacity: 1; }
+    50%  { opacity: 0; }
+    74%  { opacity: 0; }
+    75%  { opacity: 1; }
+    99%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .transition-pixel { animation: none !important; opacity: 0 !important; }
+}

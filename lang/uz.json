@@ -1,0 +1,146 @@
+{
+    "hero.status": "Yangi loyihalarga ochiqman",
+    "hero.description": "Frontend dasturchi — 3 yillik tajriba. HTML, CSS, JavaScript va Python bilan g'oyalarni ishlaydigan, tez va sinchkovlik bilan qurilgan interfeyslarga aylantiraman.",
+    "hero.projects": "Loyihalarni ko'rish",
+    "hero.contact": "Bog'lanish",
+    "role.1":"Frontend Dasturchi",
+    "role.2":"UI ixlosmandi",
+    "role.3":"Python bilan avtomatlashtiruvchi",
+    "role.4":"Detallarga e'tiborli",
+
+    "about.label": "01 — about",
+    "about.title": "Kim bu isom1ddinov?",
+    "about.text1": "<strong>isom1ddinov</strong> — frontend yo'nalishida ishlaydigan dasturchi. So'nggi 3 yil davomida veb-interfeyslar qurish, statik saytlardan tortib interaktiv veb-ilovalargacha bo'lgan loyihalar ustida ishlaganman.",
+    "about.text2": "Kodni aniq, o'qilishi oson va uzoq muddat qo'llab-quvvatlanadigan qilib yozishga harakat qilaman. Frontendda vizual detallarga, Python orqali esa avtomatlashtirish va muammolarni yechishga qiziqaman.",
+    "about.text3": "Har bir loyihada bitta savolni beraman: <strong>bu interfeys odamning vaqtini tejaydimi?</strong> Javob \"ha\" bo'lmaguncha ishlashda davom etaman.",
+    "about.stat1": "YIL TAJRIBA",
+    "about.stat2": "ASOSIY TEXNOLOGIYA",
+    "about.stat3": "% MOSLASHUVCHAN KOD",
+
+    "services.label": "02 — services",
+    "services.title": "Nima bilan yordam bera olaman",
+    "services.subtitle": "Kichik landing sahifalardan tortib to'liq interaktiv veb-ilovalargacha.",
+    "services.card1.title": "Veb-sayt qurish",
+    "services.card1.text": "Semantik HTML va toza CSS asosida tezkor, responsive saytlar.",
+    "services.card2.title": "Interaktiv UI",
+    "services.card2.text": "JavaScript orqali animatsiya, scroll-effektlar va foydalanuvchi tajribasi.",
+    "services.card3.title": "Python avtomatlashtirish",
+    "services.card3.text": "Takrorlanuvchi vazifalarni skriptlar bilan avtomatlashtirish.",
+    "services.card4.title": "Performance",
+    "services.card4.text": "Tezkor yuklanadigan, optimallashtirilgan sahifalar.",
+
+    "skills.label": "03 — skills",
+    "skills.title": "Texnik ko'nikmalar",
+
+    "process.label": "04 — process",
+    "process.title": "Qanday ishlayman",
+    "process.subtitle": "Har bir loyiha shu real ketma-ketlik bo'yicha davom etadi.",
+    "process.step1.title": "Tushunish",
+    "process.step1.text": "Loyiha maqsadi, auditoriya va texnik talablarni aniqlab olaman.",
+    "process.step2.title": "Rejalashtirish",
+    "process.step2.text": "Struktura, komponentlar va texnologiyalarni belgilayman.",
+    "process.step3.title": "Qurish",
+    "process.step3.text": "Toza, test qilingan kod bilan bosqichma-bosqich amalga oshiraman.",
+    "process.step4.title": "Yetkazish",
+    "process.step4.text": "Test, optimallashtirish va joylashtirishdan so'ng natijani topshiraman.",
+
+    "experience.label": "05 — experience",
+    "experience.title": "Tajriba",
+"experience.item1.role": "D4RK.SOFT — Yurutuvchi",
+"experience.item1.desc": "D4RK.SOFT - loyihasida 2025 yil yuritishni boshlab ko'p odamlarni kod yozishga qiziqtirganman.",
+"experience.item2.role": "prodent.uz — Expert",
+"experience.item2.desc": "prodent.uz - kompaniyasida veb sayt va ilovalarni odamlarga tushuntirib, ularga ko'mak berib kelmoqdaman.",
+"experience.item3.role": "isom1ddinov.uz — Developer",
+"experience.item3.desc": "isom1ddinov.uz - loyihasida o'zimning hayotim, qilgan ishlarim va bilimlarimni ulashib bormoqdaman.",
+
+"projects.label": "06 — projects",
+"projects.title": "Loyihalar",
+"projects.subtitle": "Kartani bosing — batafsil ma'lumot ochiladi.",
+"projects.filter.all": "Barchasi",
+"projects.filter.web": "Web",
+"projects.filter.script": "Skript",
+"project.1.title": "D4RK SOFT",
+"project.1.short": "eng yaxshi qilgan saytlarimdan biri",
+"project.1.desc": "'D4RK SOFT' - loyihasida veb saytlar yaratib ozimni ilk blogimni yurutganman va Instagram, YouTube, TikTok, Telegramda ozimni shaxsiy bloglarimni yuritganman. Dasturlashga bog'liq foydali videolar chiqarganman. Hozirda yangi proekt va ishlar bilan bo'lib uni yuritmay qo'yganman, lekin yana yuritish niyatim bor.",
+"project.2.title": "Landguru",
+"project.2.short": "bu landing page bo'lib mobil ilova uchun qilingan sayt",
+"project.2.desc": "'Landguru' - dasturlashni o'rganish davomida qilgan ishlarimdan biri. Unda turli hover effektlaridan foydalangan holda HTML va CSS asosida vebsayt yaratganman va hozirda bu serverga qo'yilgan.",
+"project.3.title": "Avtoxabar",
+"project.3.short": "bu asosiy qismi Pythonda yozilgan Telegram avtoxabar",
+"project.3.desc": "'Avtoxabar' - logistika sohasiga qiziqqanim va ishlaganim uchun yaratilgan loyiha. Reklamalarni qo'lda yozib yuborishni osonlashtirish maqsadida yaratganman. VPS ham ishlatganman, bu ishni ancha yengillashtirgan.",
+"project.4.title": "Mountain",
+"project.4.short": "bu eng yaxshi qo'lda yozilgan saytlarimdan biri",
+"project.4.desc": "'Mountain' - JavaScriptni o'rganayotganimda yaratgan loyiham. JS qo'shib, turli dizaynlar va sokin musiqalar bilan aynan tog' muhitini beradigan qilib yasaganman. Bu ham eng yaxshi qilgan ishlarimdan biridir.",
+
+"testimonials.label": "07 — testimonials",
+"testimonials.title": "Mijozlar fikri",
+
+"facts.1": "bajarilgan vazifalar",
+"facts.2": "yillik tajriba",
+"facts.3": "asosiy texnologiya",
+"facts.4": "o'z vaqtida topshirish",
+
+"blog.label": "08 — Coding",
+"blog.title": "Kodlar",
+"blog.subtitle": "Frontend va Python haqida yozgan qisqa qaydlar (placeholder).",
+"blog.date": "2026 · Kod",
+
+
+  "faq.label": "09 — FAQ",
+  "faq.title": "Ko'p so'raladigan savollar",
+  "faq.subtitle": "Loyiha va ishlash jarayoni haqida qisqa javoblar.",
+
+  "faq.1.question": "Sayt yaratish qancha vaqt oladi?",
+  "faq.1.answer": "Loyiha hajmi va murakkabligiga qarab odatda bir necha kundan bir necha haftagacha vaqt ketadi.",
+
+  "faq.2.question": "Qanday texnologiyalardan foydalanasiz?",
+  "faq.2.answer": "Asosan HTML, CSS, JavaScript va Python bilan ishlayman. Loyiha talabiga qarab boshqa texnologiyalarni ham qo'llashim mumkin.",
+
+  "faq.3.question": "Mobil qurilmalarga mos sayt qila olasizmi?",
+  "faq.3.answer": "Ha. Saytlarni telefon, planshet va kompyuter ekranlariga mos responsive tarzda ishlab chiqaman.",
+
+  "faq.4.question": "Tayyor saytni internetga joylashtirib bera olasizmi?",
+  "faq.4.answer": "Ha. Domen, hosting yoki VPS sozlash va saytni internetga joylashtirishda ham yordam beraman.",
+
+  "faq.5.question": "Saytga keyinchalik o'zgartirish kiritish mumkinmi?",
+  "faq.5.answer": "Albatta. Saytni keyinchalik yangilash, yangi bo'limlar qo'shish yoki mavjud funksiyalarni o'zgartirish mumkin.",
+
+  "contact.title": "Bog'lanamiz",
+  "contact.subtitle": "Loyihangiz haqida gaplashamiz. Menga yozing va g'oyangizni birgalikda amalga oshiramiz.",
+
+  "contact.name": "Ismingiz",
+  "contact.name.placeholder": "Ismingizni kiriting",
+
+  "contact.email": "Email",
+  "contact.email.placeholder": "Email manzilingiz",
+
+  "contact.message": "Xabar",
+  "contact.message.placeholder": "Loyihangiz haqida yozing...",
+
+  "contact.send": "Xabar yuborish",
+
+  "contact.telegram": "Telegram",
+  "contact.github": "GitHub",
+  "contact.instagram": "Instagram",
+
+  "footer.description": "Frontend dasturchi. HTML, CSS, JavaScript va Python bilan ishlayman.",
+"footer.page": "Sahifa",
+"footer.more": "Ko'proq",
+"footer.social": "Ijtimoiy",
+"footer.copyright": "© 2026 isom1ddinov.uz",
+"footer.built": "HTML · CSS · JS bilan yaratilgan",
+
+
+    "contact.label": "10 — contact",
+    "contact.copy": "email nusxalash",
+    "contact.namePlaceholder": "Ismingiz",
+
+    "contact.emailPlaceholder": "email@misol.com",
+    "contact.messagePlaceholder": "Loyiha haqida qisqacha...",
+    "contact.submit": "Yuborish"
+
+}
+
+
+
+

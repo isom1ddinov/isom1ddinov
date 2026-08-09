@@ -1,0 +1,138 @@
+{
+    "hero.status": "Available for new projects",
+    "hero.description": "Frontend developer with 3 years of experience. I build fast, modern and carefully crafted interfaces using HTML, CSS, JavaScript and Python.",
+    "hero.projects": "View Projects",
+    "hero.contact": "Contact",
+    "role.1": "Frontend Developer",
+    "role.2": "UI Enthusiast",
+    "role.3": "JavaScript Developer",
+    "role.4": "Python Developer",
+
+    "about.label": "01 — about",
+    "about.title": "Who is isom1ddinov?",
+    "about.text1": "<strong>isom1ddinov</strong> — a frontend developer. For the past 3 years, I have been building web interfaces, from static websites to interactive web applications.",
+    "about.text2": "I strive to write code that is clean, readable, and easy to maintain in the long term. In frontend development, I focus on visual details, while with Python I enjoy automation and problem solving.",
+    "about.text3": "For every project, I ask one question: <strong>does this interface save people's time?</strong> I keep working until the answer is \"yes\".",
+    "about.stat1": "YEARS EXPERIENCE",
+    "about.stat2": "CORE TECHNOLOGIES",
+    "about.stat3": "% ADAPTIVE CODE",
+
+    "services.label": "02 — services",
+    "services.title": "How I can help",
+    "services.subtitle": "From small landing pages to fully interactive web applications.",
+    "services.card1.title": "Website Development",
+    "services.card1.text": "Fast, responsive websites built with semantic HTML and clean CSS.",
+    "services.card2.title": "Interactive UI",
+    "services.card2.text": "Animations, scroll effects, and user experience improvements with JavaScript.",
+    "services.card3.title": "Python Automation",
+    "services.card3.text": "Automating repetitive tasks with scripts.",
+    "services.card4.title": "Performance",
+    "services.card4.text": "Fast-loading and optimized web pages.",
+
+    "skills.label": "03 — skills",
+    "skills.title": "Technical Skills",
+    "process.label": "04 — process",
+    "process.title": "How I Work",
+    "process.subtitle": "Every project follows this clear process.",
+    "process.step1.title": "Understanding",
+    "process.step1.text": "I define the project goals, target audience, and technical requirements.",
+    "process.step2.title": "Planning",
+    "process.step2.text": "I define the structure, components, and technologies.",
+    "process.step3.title": "Building",
+    "process.step3.text": "I implement the project step by step with clean, tested code.",
+    "process.step4.title": "Delivery",
+    "process.step4.text": "After testing, optimization, and deployment, I deliver the final result.",
+    
+    "experience.label": "05 — experience",
+"experience.title": "Experience",
+"experience.item1.role": "D4RK.SOFT — Founder",
+"experience.item1.desc": "In 2025, I started developing the D4RK.SOFT project and inspired many people to become interested in coding.",
+"experience.item2.role": "prodent.uz — Expert",
+"experience.item2.desc": "At prodent.uz, I help people understand and use our websites and applications.",
+"experience.item3.role": "isom1ddinov.uz — Developer",
+"experience.item3.desc": "Through isom1ddinov.uz, I share my life, projects, work, and knowledge with others.",
+
+"projects.label": "06 — projects",
+"projects.title": "Projects",
+"projects.subtitle": "Click a card to open detailed information.",
+"projects.filter.all": "All",
+"projects.filter.web": "Web",
+"projects.filter.script": "Scripts",
+"project.1.title": "D4RK SOFT",
+"project.1.short": "one of the best websites I have created",
+"project.1.desc": "In the 'D4RK SOFT' project, I created websites and ran my first blog. I also managed personal blogs on Instagram, YouTube, TikTok, and Telegram, publishing useful programming-related videos. I currently stopped working on it because of new projects and work, but I plan to return to it.",
+"project.2.title": "Landguru",
+"project.2.short": "a landing page created for a mobile application",
+"project.2.desc": "'Landguru' is one of the projects I created while learning programming. I built it with HTML and CSS using various hover effects. It is currently deployed on a server.",
+"project.3.title": "Avtoxabar",
+"project.3.short": "a Telegram auto-messaging system mainly written in Python",
+"project.3.desc": "'Avtoxabar' was created because of my interest and experience in logistics. I built it to make sending advertisements easier instead of writing and sending them manually. I also used a VPS, which made the process much easier.",
+"project.4.title": "Mountain",
+"project.4.short": "one of the best websites I have coded by hand",
+"project.4.desc": "'Mountain' is a project I created while learning JavaScript. I added JS, different designs, and relaxing music to create a mountain-like atmosphere. It is also one of my favorite projects.",
+
+"testimonials.label": "07 — testimonials",
+"testimonials.title": "Client testimonials",
+
+"facts.1": "completed tasks",
+"facts.2": "years of experience",
+"facts.3": "core technologies",
+"facts.4": "on-time delivery",
+
+"blog.label": "08 — Coding",
+"blog.title": "Code",
+"blog.subtitle": "Short notes about Frontend and Python (placeholder).",
+"blog.date": "2026 · Code",
+
+  "faq.label": "09 — FAQ",
+  "faq.title": "Frequently Asked Questions",
+  "faq.subtitle": "Short answers about projects and the working process.",
+
+  "faq.1.question": "How long does it take to create a website?",
+  "faq.1.answer": "Depending on the size and complexity of the project, it usually takes from a few days to several weeks.",
+
+  "faq.2.question": "What technologies do you use?",
+  "faq.2.answer": "I mainly work with HTML, CSS, JavaScript and Python. I can also use other technologies depending on the project requirements.",
+
+  "faq.3.question": "Can you create responsive websites?",
+  "faq.3.answer": "Yes. I create responsive websites that work properly on phones, tablets and computers.",
+
+  "faq.4.question": "Can you deploy the finished website?",
+  "faq.4.answer": "Yes. I can also help with domain, hosting or VPS configuration and deploy the website online.",
+
+  "faq.5.question": "Can the website be modified later?",
+  "faq.5.answer": "Of course. The website can be updated, new sections can be added and existing features can be modified later.",
+
+  "contact.label": "10 — Contact",
+  "contact.title": "Let's Get in Touch",
+  "contact.subtitle": "Let's talk about your project. Send me a message and we'll bring your idea to life together.",
+
+  "contact.name": "Name",
+  "contact.name.placeholder": "Enter your name",
+
+  "contact.email": "Email",
+  "contact.email.placeholder": "Enter your email",
+
+  "contact.message": "Message",
+  "contact.message.placeholder": "Tell me about your project...",
+
+  "contact.send": "Send Message",
+
+  "contact.telegram": "Telegram",
+  "contact.github": "GitHub",
+  "contact.instagram": "Instagram",
+
+  "footer.description": "Frontend developer. I work with HTML, CSS, JavaScript and Python.",
+"footer.page": "Page",
+"footer.more": "More",
+"footer.social": "Social",
+"footer.copyright": "© 2026 isom1ddinov.uz",
+"footer.built": "built with HTML · CSS · JS",
+
+    "contact.copy": "copy email",
+    "contact.namePlaceholder": "Your name",
+    "contact.emailPlaceholder": "email@example.com",
+    "contact.messagePlaceholder": "Briefly describe your project...",
+    "contact.submit": "Send"
+
+}

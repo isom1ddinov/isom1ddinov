@@ -1,0 +1,143 @@
+{
+    "hero.status": "Открыт для новых проектов",
+    "hero.description": "Frontend-разработчик с 3-летним опытом. Создаю быстрые, современные и качественные интерфейсы с использованием HTML, CSS, JavaScript и Python.",
+    "hero.projects": "Посмотреть проекты",
+    "hero.contact": "Связаться",
+    "role.1": "Frontend разработчик",
+    "role.2": "UI энтузиаст",
+    "role.3": "JavaScript разработчик",
+    "role.4": "Python разработчик",
+
+    "about.label": "01 — about",
+    "about.title": "Кто такой isom1ddinov?",
+    "about.text1": "<strong>isom1ddinov</strong> — разработчик, работающий в направлении frontend. Последние 3 года занимаюсь созданием веб-интерфейсов — от статических сайтов до интерактивных веб-приложений.",
+    "about.text2": "Стараюсь писать код понятно, аккуратно и так, чтобы его было легко поддерживать в долгосрочной перспективе. Во frontend интересуюсь визуальными деталями, а с помощью Python — автоматизацией и решением задач.",
+    "about.text3": "В каждом проекте я задаю один вопрос: <strong>экономит ли этот интерфейс время человека?</strong> Я продолжаю работать, пока ответ не будет \"да\".",
+    "about.stat1": "ГОДА ОПЫТА",
+    "about.stat2": "ОСНОВНЫЕ ТЕХНОЛОГИИ",
+    "about.stat3": "% АДАПТИВНОГО КОДА",
+
+    "services.label": "02 — services",
+    "services.title": "Чем я могу помочь",
+    "services.subtitle": "От небольших landing-страниц до полноценных интерактивных веб-приложений.",
+    "services.card1.title": "Создание веб-сайтов",
+    "services.card1.text": "Быстрые адаптивные сайты на основе семантического HTML и чистого CSS.",
+    "services.card2.title": "Интерактивный UI",
+    "services.card2.text": "Анимации, scroll-эффекты и улучшение пользовательского опыта с помощью JavaScript.",
+    "services.card3.title": "Автоматизация на Python",
+    "services.card3.text": "Автоматизация повторяющихся задач с помощью скриптов.",
+    "services.card4.title": "Производительность",
+    "services.card4.text": "Быстро загружаемые и оптимизированные страницы.",
+
+    "skills.label": "03 — skills",
+    "skills.title": "Технические навыки",
+
+    "process.label": "04 — process",
+    "process.title": "Как я работаю",
+    "process.subtitle": "Каждый проект проходит именно такую последовательность.",
+    "process.step1.title": "Понимание",
+    "process.step1.text": "Определяю цели проекта, аудиторию и технические требования.",
+    "process.step2.title": "Планирование",
+    "process.step2.text": "Определяю структуру, компоненты и используемые технологии.",
+    "process.step3.title": "Разработка",
+    "process.step3.text": "Пошагово реализую проект с помощью чистого и протестированного кода.",
+    "process.step4.title": "Сдача",
+    "process.step4.text": "После тестирования, оптимизации и размещения передаю готовый результат.",
+
+"experience.label": "05 — experience",
+"experience.title": "Опыт",
+"experience.item1.role": "D4RK.SOFT — Руководитель",
+"experience.item1.desc": "В 2025 году я начал развивать проект D4RK.SOFT и заинтересовал многих людей программированием.",
+"experience.item2.role": "prodent.uz — Эксперт",
+"experience.item2.desc": "В компании prodent.uz я помогаю людям разбираться в наших веб-сайтах и приложениях.",
+"experience.item3.role": "isom1ddinov.uz — Разработчик",
+"experience.item3.desc": "В проекте isom1ddinov.uz я делюсь своей жизнью, выполненными работами и полученными знаниями.",
+
+"projects.label": "06 — projects",
+"projects.title": "Проекты",
+"projects.subtitle": "Нажмите на карточку — откроется подробная информация.",
+"projects.filter.all": "Все",
+"projects.filter.web": "Web",
+"projects.filter.script": "Скрипты",
+"project.1.title": "D4RK SOFT",
+"project.1.short": "один из лучших созданных мной сайтов",
+"project.1.desc": "В проекте 'D4RK SOFT' я создавал веб-сайты и вел свой первый блог. Я развивал личные блоги в Instagram, YouTube, TikTok и Telegram, публикуя полезные видео о программировании. Сейчас из-за новых проектов и работы я перестал его вести, но планирую вернуться к нему.",
+"project.2.title": "Landguru",
+"project.2.short": "Целевая страница, созданный для мобильного приложения",
+"project.2.desc": "'Landguru' — один из моих проектов во время изучения программирования. Я создал сайт на HTML и CSS с различными hover-эффектами. Сейчас он размещен на сервере.",
+"project.3.title": "Avtoxabar",
+"project.3.short": "Telegram-авторассылка, основная часть которой написана на Python",
+"project.3.desc": "'Avtoxabar' был создан благодаря моему интересу и работе в сфере логистики. Я разработал его, чтобы упростить отправку рекламных сообщений. Также использовал VPS, что значительно упростило работу.",
+"project.4.title": "Mountain",
+"project.4.short": "один из лучших сайтов, написанных мной вручную",
+"project.4.desc": "'Mountain' — проект, который я создал во время изучения JavaScript. Я добавил JS, различные дизайны и спокойную музыку, чтобы передать атмосферу гор. Это один из моих лучших проектов.",
+
+"testimonials.label": "07 — testimonials",
+"testimonials.title": "Отзывы клиентов",
+
+"facts.1": "выполненных задач",
+"facts.2": "года опыта",
+"facts.3": "основные технологии",
+"facts.4": "сдача точно в срок",
+
+"blog.label": "08 — coding",
+"blog.title": "Код",
+"blog.subtitle": "Короткие заметки о Frontend и Python (placeholder).",
+"blog.date": "2026 · Код",
+
+
+  "faq.label": "09 — FAQ",
+  "faq.title": "Часто задаваемые вопросы",
+  "faq.subtitle": "Краткие ответы о проектах и процессе работы.",
+
+  "faq.1.question": "Сколько времени занимает создание сайта?",
+  "faq.1.answer": "В зависимости от размера и сложности проекта работа обычно занимает от нескольких дней до нескольких недель.",
+
+  "faq.2.question": "Какие технологии вы используете?",
+  "faq.2.answer": "В основном я работаю с HTML, CSS, JavaScript и Python. При необходимости могу использовать и другие технологии.",
+
+  "faq.3.question": "Вы создаёте сайты для мобильных устройств?",
+  "faq.3.answer": "Да. Сайты разрабатываются адаптивными и корректно работают на телефонах, планшетах и компьютерах.",
+
+  "faq.4.question": "Можете разместить готовый сайт в интернете?",
+  "faq.4.answer": "Да. Я могу помочь с настройкой домена, хостинга или VPS и размещением сайта в интернете.",
+
+  "faq.5.question": "Можно ли изменить сайт после его создания?",
+  "faq.5.answer": "Конечно. В дальнейшем можно обновлять сайт, добавлять новые разделы и изменять существующие функции.",
+
+  "contact.title": "Свяжемся",
+  "contact.subtitle": "Давайте обсудим ваш проект. Напишите мне, и вместе реализуем вашу идею.",
+
+  "contact.name": "Имя",
+  "contact.name.placeholder": "Введите ваше имя",
+
+  "contact.email": "Email",
+  "contact.email.placeholder": "Введите ваш email",
+
+  "contact.message": "Сообщение",
+  "contact.message.placeholder": "Расскажите о вашем проекте...",
+
+  "contact.send": "Отправить сообщение",
+
+  "contact.telegram": "Telegram",
+  "contact.github": "GitHub",
+  "contact.instagram": "Instagram",
+
+  "footer.description": "Frontend-разработчик. Работаю с HTML, CSS, JavaScript и Python.",
+"footer.page": "Страница",
+"footer.more": "Больше",
+"footer.social": "Социальные сети",
+"footer.copyright": "© 2026 isom1ddinov.uz",
+"footer.built": "создано с помощью HTML · CSS · JS",
+
+
+    "contact.label": "10 — Contact",
+    "contact.copy": "скопировать email",
+    "contact.namePlaceholder": "Ваше имя",
+    "contact.emailPlaceholder": "email@example.com",
+    "contact.messagePlaceholder": "Кратко о проекте...",
+    "contact.submit": "Отправить"
+
+
+}
+
