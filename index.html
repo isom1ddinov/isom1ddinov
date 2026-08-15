@@ -3846,24 +3846,11 @@
                 transition.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
                 transition.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 
-                const centerX = (columns - 1) / 2;
-                const centerY = (rows - 1) / 2;
-
                 for (let i = 0; i < columns * rows; i++) {
 
                     const pixel = document.createElement("div");
 
                     pixel.className = "transition-pixel";
-
-                    const row = Math.floor(i / columns);
-                    const col = i % columns;
-
-                    const distance = Math.sqrt(
-                        Math.pow(col - centerX, 2) +
-                        Math.pow(row - centerY, 2)
-                    );
-
-                    pixel.dataset.distance = distance;
 
                     /* har bir katakka tasodifiy davomiylik — checkerboard
                        naqshi hech qachon aynan bir xil takrorlanmasligi uchun */
@@ -3890,6 +3877,26 @@
                PIXEL TRANSITION
                ===================================================== */
 
+            /* Fisher-Yates — kataklarni tasodifiy aralashtiradi, shunda
+               yorug' bo'lish tartibi markazdan yoki chetdan emas, balki
+               butun ekran bo'ylab tasodifiy "TV static" tarzida bo'ladi
+               (isladjan.com'dagidek) */
+            function shuffledPixels() {
+
+                const arr = [...pixels];
+
+                for (let i = arr.length - 1; i > 0; i--) {
+
+                    const j = Math.floor(Math.random() * (i + 1));
+
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+
+                }
+
+                return arr;
+
+            }
+
             function playTransition(callback) {
 
                 transition.classList.remove(
@@ -3906,16 +3913,9 @@
                     ? MAX_SPREAD_MS / (pixels.length - 1)
                     : 0;
 
-                /* Markazdan tashqariga */
+                /* Tasodifiy tartibda, butun ekran bo'ylab */
 
-                const openOrder = [...pixels].sort(
-                    (a, b) =>
-                        Number(a.dataset.distance) -
-                        Number(b.dataset.distance)
-                );
-
-
-                openOrder.forEach((pixel, index) => {
+                shuffledPixels().forEach((pixel, index) => {
 
                     pixel.style.animationDelay =
                         `${index * perPixelDelay}ms`;
@@ -3935,16 +3935,9 @@
                     }
 
 
-                    /* Endi teskari tartib */
+                    /* Yopilishda ham yangi tasodifiy tartib */
 
-                    const closeOrder = [...pixels].sort(
-                        (a, b) =>
-                            Number(b.dataset.distance) -
-                            Number(a.dataset.distance)
-                    );
-
-
-                    closeOrder.forEach((pixel, index) => {
+                    shuffledPixels().forEach((pixel, index) => {
 
                         pixel.style.animationDelay =
                             `${index * perPixelDelay}ms`;

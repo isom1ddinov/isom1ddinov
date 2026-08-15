@@ -397,8 +397,8 @@ pre {
     will-change: opacity;
 }
 
-/* markazdan tashqariga — har bir katak bir necha marta
-   yonib-o'chib, oxirida yonib qoladi (checkerboard glitch) */
+/* tasodifiy tartibda, butun ekran bo'ylab — har bir katak bir necha
+   marta yonib-o'chib, oxirida yonib qoladi (checkerboard glitch) */
 .page-transition.pixel-open .transition-pixel {
     animation-name: pixelFlickerIn;
     animation-fill-mode: forwards;
@@ -417,7 +417,7 @@ pre {
     100% { opacity: 1; }
 }
 
-/* tashqaridan markazga — xuddi shunday yonib-o'chib, oxirida o'chadi */
+/* yopilishda ham xuddi shunday, yangi tasodifiy tartibda o'chadi */
 .page-transition.pixel-close .transition-pixel {
     animation-name: pixelFlickerOut;
     animation-fill-mode: forwards;
